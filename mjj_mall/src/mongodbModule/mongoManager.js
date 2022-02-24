@@ -20,7 +20,9 @@ let mongoHelper = {
      * @param {JSON} jsonObj 
      */
     DataInsertOne:function(collectionName, jsonObj){
-        db.collection(collectionName).insertOne(jsonObj);
+        db.collection(collectionName).insertOne(jsonObj,function(err,doc){
+            throw err;
+        });
     },
     /**
      * Insert DB Many
@@ -29,7 +31,9 @@ let mongoHelper = {
      * @param {JSON} jsonObj 
      */
     DataInsertMany:function(collectionName, jsonObj){
-        db.collection(collectionName).insertMany(jsonObj);
+        db.collection(collectionName).insertMany(jsonObj,function(err,doc){
+            throw err;
+        });
     }
 }
 
