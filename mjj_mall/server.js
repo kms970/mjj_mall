@@ -4,8 +4,7 @@ const bodyParser = require('body-parser');
 const ejs = require('ejs')
 const path = require('path')
 const static = require('serve-static');
-const db = require('./src/mongodbModule/mongoManager');
-let mongoSchema = require('./src/mongodbModule/mongoSchema');
+let db = require('./src/mongodbModule/mongoClientManager');
 
 app.use(function (req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
@@ -14,12 +13,6 @@ app.use(function (req, res, next) {
 });
 
 app.use(bodyParser.json());
-
-let testSelect = async function(res){
-	console.log(res);
-}
-
-db.DataSelect(mongoSchema.member, 'member','','', testSelect);
 
 app.use(bodyParser.urlencoded({
 	extended: true

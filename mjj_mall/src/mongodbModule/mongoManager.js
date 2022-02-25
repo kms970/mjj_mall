@@ -24,7 +24,7 @@ let mongoHelper = {
      */
     DataInsertOne:function(collectionName, jsonObj){
         db.collection(collectionName).insertOne(jsonObj,function(err,doc){
-            throw err;
+            if(err)throw err;
         });
     },
     /**
@@ -50,41 +50,46 @@ let mongoHelper = {
      * @param {*} callback 
      */
     DataSelect:async function(schemaName, collectionName, selectWhere, columnName, callback){
-        if(selectWhere) {
-            db.model(collectionName,schemaName).find(selectWhere,async function(err,res){
-                if(err) console.log(err);
-                else {
-                    console.log(res);
-                    return Promise.resolve(callback(res));
-                }
-            });
-        }else if(columnName){
-            db.model(collectionName,schemaName).find(columnName,async function(err,res){
-                if(err) console.log(err);
-                else {
-                    console.log(res);
-                    return Promise.resolve(callback(res));
-                }
-            });
-        }else if(columnName&&selectWhere){
-            db.model(collectionName,schemaName).find(selectWhere,columnName,async function(err,res){
-                if(err) console.log(err);
-                else {
-                    console.log(res);
-                    return Promise.resolve(callback(res));
-                }
-            });
-        }else if(!columnName&&!selectWhere){
-
-            db.model(collectionName,schemaName).find(async function(err,res){
-                if(err) console.log(err);
-                else {
-                    console.log(res);
-                    
-                    return Promise.resolve(callback(res));
-                }
-            });
-        }
+        // if(selectWhere) {
+        //     console.log('aaa');
+        //     db.model(collectionName,schemaName).find(selectWhere,async function(err,res){
+        //         if(err) console.log(err);
+        //         else {
+        //             console.log(res);
+        //             return Promise.resolve(callback(res));
+        //         }
+        //     });
+        // }else if(columnName){
+        //     console.log('bbb');
+        //     db.model(collectionName,schemaName).find(columnName,async function(err,res){
+        //         if(err) console.log(err);
+        //         else {
+        //             console.log(res);
+        //             return Promise.resolve(callback(res));
+        //         }
+        //     });
+        // }else if(columnName&&selectWhere){
+        //     console.log('ccc');
+        //     db.model(collectionName,schemaName).find(selectWhere,columnName,async function(err,res){
+        //         if(err) console.log(err);
+        //         else {
+        //             console.log(res);
+        //             return Promise.resolve(callback(res));
+        //         }
+        //     });
+        // }else if(!columnName&&!selectWhere){
+        //     db.model(collectionName,schemaName).find().exec(function(err,res){
+        //         if(err) console.log(err);
+        //         else {
+        //             console.log(res);
+        //             return Promise.resolve(callback(res));
+        //         }
+        //     });
+        // }
+        let cursor = db.collection(collectionName).find();
+        cursor.each(function(err,doc){
+            console.log(doc);
+        })
     }
 }
 
