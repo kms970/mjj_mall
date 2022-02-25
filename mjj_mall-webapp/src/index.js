@@ -4,11 +4,13 @@ import './index.css';
 import App from './App';
 import Login from './login/Login';
 import reportWebVitals from './reportWebVitals';
+import styled from 'styled-components';
+import 'antd/dist/antd.css';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {/*<App />*/}
     <Login />
   </React.StrictMode>,
   document.getElementById('root')
