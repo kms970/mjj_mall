@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const ejs = require('ejs')
 const path = require('path')
 const static = require('serve-static');
+let db = require('./src/mongodbModule/mongoClientManager');
 
 app.use(function (req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
