@@ -5,12 +5,16 @@ function Join() {
   /**
    * 회원가입을 요청하는 function
    *
+   * @since 2022-02-24
    * @author jslee
    */
   const join = () => {
 
   }
 
+  /**
+   *
+   */
   const vaildCheck = () => {
 
   }
