@@ -1,5 +1,6 @@
 import React, {useState, useRef} from 'react';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Link } from 'react-router-dom';
+import { Form, Input, Button, Checkbox, PageHeader, Divider } from 'antd';
 import styled from 'styled-components';
 import {CheckOutlined} from '@ant-design/icons';
 /**
@@ -18,6 +19,11 @@ const StyledButton = styled(Button)`
   &:active {
     background: #ff8ac6;
   }
+`;
+
+const StyledATags = styled.a`
+  display: inline;
+  text-align: right;
 `;
 
 /**
@@ -68,6 +74,14 @@ function Login() {
 
   return (
     <div>
+      <PageHeader
+        className="site-page-header"
+        // onBack={() => null} //이후 이전 화면으로 돌아가기 위한 버튼
+        title="MJJ MALL"
+        subTitle="간결하고 알찬 쇼핑몰, MJJ MALL 입니다."
+      />
+      <Divider style={{margin: 0}} />
+
       <Form
         name="basic"
         labelCol={{
@@ -117,8 +131,8 @@ function Login() {
           }}
         >
           <Checkbox>Remember me</Checkbox>
-        </Form.Item>
 
+        </Form.Item>
         <Form.Item
           wrapperCol={{
             offset: 4,
@@ -129,7 +143,9 @@ function Login() {
             <CheckOutlined />
             Submit
           </StyledButton>
+          <span><Link to="/join">아직 회원이 아니신가요?</Link></span> {/* 회원 가입 화면으로 이동하는 태그 */}
         </Form.Item>
+
       </Form>
     </div>
   )
