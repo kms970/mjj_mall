@@ -1,8 +1,9 @@
-import React, {useState, useRef} from 'react';
-import { Link } from 'react-router-dom';
-import { Form, Input, Button, Checkbox, PageHeader, Divider } from 'antd';
+import React from 'react';
+import {Link} from 'react-router-dom';
+import {Button, Checkbox, Divider, Form, Input, PageHeader} from 'antd';
 import styled from 'styled-components';
 import {CheckOutlined} from '@ant-design/icons';
+
 /**
  * StyledButton button의 style을 지정
  * @author jslee
@@ -21,11 +22,6 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const StyledATags = styled.a`
-  display: inline;
-  text-align: right;
-`;
-
 /**
  * 로그인 수행하는 클래스 functions
  *
@@ -36,16 +32,6 @@ const StyledATags = styled.a`
  */
 function Login() {
   /**
-   * 회원 가입 페이지로 라우팅을 넘겨주는 함수
-   *
-   * @author jslee
-   * @since 2022-02-25
-   */
-  const goToJoin = () => {
-
-  }
-
-  /**
    * 로그인을 요청하는 함수
    *
    * @author jslee
@@ -53,23 +39,6 @@ function Login() {
    */
   const loginRequest = (event) => {
     console.log("login event", event);
-  }
-
-  /**
-   * @deprecated
-   *
-   * input값을 받으면 실시간으로 값을 매핑
-   * @param e input 태그를 통해 입력 받은 값
-   *
-   * @since 2022-02-24
-   */
-  const onChange = e => {
-    const {value, name} = e.target; // 우선 e.target에서 name과 value 추출
-
-    // setInputs({
-    //   ...inputs, // 기존의 input 객체를 복사
-    //   [name]:value //name 키를 가진 값을 value로 설정
-    // })
   }
 
   return (
@@ -130,8 +99,8 @@ function Login() {
             span: 8,
           }}
         >
-          <Checkbox>Remember me</Checkbox>
-
+          <span><Checkbox>Remember me</Checkbox></span>
+          <span><>아이디 찾기</> | <>비밀번호 찾기</></span>
         </Form.Item>
         <Form.Item
           wrapperCol={{
@@ -139,10 +108,13 @@ function Login() {
             span: 8,
           }}
         >
-          <StyledButton type="primary" htmlType="submit">
-            <CheckOutlined />
-            Submit
-          </StyledButton>
+          <span>
+            <StyledButton type="primary" htmlType="submit">
+              <CheckOutlined />
+                Submit
+            </StyledButton>
+          </span>
+
           <span><Link to="/join">아직 회원이 아니신가요?</Link></span> {/* 회원 가입 화면으로 이동하는 태그 */}
         </Form.Item>
 
