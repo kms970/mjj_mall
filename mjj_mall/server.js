@@ -4,13 +4,24 @@ const bodyParser = require('body-parser');
 const ejs = require('ejs')
 const path = require('path')
 const static = require('serve-static');
-let db = require('./src/mongodbModule/mongoClientManager');
+const mongoDB = require('./src/mongodbModule/mongoClientManager');
 
 app.use(function (req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	next();
 });
+
+// let result = function(res){
+// 	console.log('===========');
+// 	console.log(res);
+// }
+
+// mongoDB.mongoSelectAll('member').then(result).catch(function(err){
+// 	console.log(err);
+// });
+
+//mongoDB.mongoInsertMany('member',[{'a':'456'},{'a':'678'}]);
 
 app.use(bodyParser.json());
 
