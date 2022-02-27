@@ -1,15 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import Login from './login/Login';
 import reportWebVitals from './reportWebVitals';
+import styled from 'styled-components';
+import 'antd/dist/antd.css';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
-    <Login />
+    <BrowserRouter>
+      <App />
+      {/*<Login />*/}
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
