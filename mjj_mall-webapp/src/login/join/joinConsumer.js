@@ -1,9 +1,32 @@
 import React from 'react';
-import {Divider, PageHeader} from 'antd';
+import {Divider, PageHeader, Form, Input, InputNumber, Button, Radio} from 'antd';
 import {StyledHeaderDiv, StyledHeaderSpan, StyledContentH2, StyledJoinDetailTable} from './JoinStyle';
 
 
 function JoinConsumer() {
+  const layout = {
+    labelCol: {
+      span: 8,
+    },
+    wrapperCol: {
+      span: 16
+    }
+  };
+
+  const validateMessages = {
+    required: '${label} is required!',
+    types: {
+      email: '${label} is not a valid email!',
+      number: '${label} is not a valid number!',
+    },
+    number: {
+      range: '${label} must be greater than ${min}',
+    },
+  };
+
+  const onFinish = (event) => {
+    console.log("Join event(회원가입 작성 이벤트)", event);
+  }
 
   return (
     <div style={{width: "100%"}}>
@@ -29,9 +52,97 @@ function JoinConsumer() {
         </thead>
       </StyledJoinDetailTable>
       <Divider style={{margin: '18px 0px'}}/>
-        회원 가입 입력 폼
 
 
+      <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages} style={{width: "100%"}}>
+        <Form.Item
+          name={['user', 'id']}
+          label="아이디"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          name={['user', 'password']}
+          label="비밀번호"
+          rules={[
+            {
+              required: true
+            },
+          ]}
+        >
+          <Input.Password />
+        </Form.Item>
+        <Form.Item
+          name={['user', 'passwordvaild']}
+          label="비밀번호 확인"
+          rules={[
+            {
+              required: true
+            },
+          ]}
+        >
+          <Input.Password />
+        </Form.Item>
+        <Form.Item
+          name={['user', 'email']}
+          label="이메일"
+          rules={[
+            {
+              type: 'email',
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          name={['user','name']}
+          label="이름"
+        >
+          <Input/>
+        </Form.Item>
+        <Form.Item
+          name={['user','birthday']}
+          label="생년월일"
+          rules={[
+            {
+              type: 'number',
+              min: 19000101
+            },
+          ]}
+        >
+          <InputNumber/>
+        </Form.Item>
+        <Form.Item
+          name={['user','phone']}
+          label="휴대폰번호"
+          rules={[
+            {
+              type: 'number'
+            },
+          ]}
+        >
+          <InputNumber/>
+        </Form.Item>
+        <Form.Item
+          name={['user','sex']}
+          label="성별"
+        >
+          <Radio.Group>
+            <Radio value = {"남자"}>남</Radio>
+            <Radio value = {"여자"}>여</Radio>
+          </Radio.Group>
+        </Form.Item>
+        <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
     </div>
   )
 }
