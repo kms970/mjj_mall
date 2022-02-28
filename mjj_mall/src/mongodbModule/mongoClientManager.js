@@ -32,6 +32,36 @@ let mongoModule = {
             });
         }); 
     },
+        /**
+     * choose collection, find all data
+     * 
+     * @param {String} collectionName - Input name of th collection
+     * @returns Promise
+     * 
+     * @author KMS
+     * @since 22-02-27
+     * 
+     */
+        mongoSelectOne:function(collectionName){
+            return new Promise(function(resolve,reject){
+                let data = new Array();
+                MongoClient.connect(url, async function(err, database){
+                    if(err) {
+                        console.log(err);
+                        reject(err);
+                    }
+                    else{
+                        var cursor = database.db('mjj').collection(collectionName).find();
+                
+                        await cursor.forEach(function(doc){
+                            data.push(doc);
+                        });
+                    }
+                    database.close();
+                    resolve(data);
+                });
+            }); 
+        },
     /**
      * Insert Data of Collection Only One
      * 
