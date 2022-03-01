@@ -6,10 +6,10 @@ import {StyledHeaderDiv, StyledHeaderSpan, StyledContentH2, StyledJoinDetailTabl
 function JoinConsumer() {
   const layout = {
     labelCol: {
-      span: 8,
+      span: 10,
     },
     wrapperCol: {
-      span: 16
+      span: 4
     }
   };
 
@@ -106,6 +106,7 @@ function JoinConsumer() {
           <Input/>
         </Form.Item>
         <Form.Item
+          {...layout}
           name={['user','birthday']}
           label="생년월일"
           rules={[
@@ -115,9 +116,10 @@ function JoinConsumer() {
             },
           ]}
         >
-          <InputNumber/>
+          <InputNumber style={{width: "320px"}}/>
         </Form.Item>
         <Form.Item
+          {...layout}
           name={['user','phone']}
           label="휴대폰번호"
           rules={[
@@ -126,7 +128,7 @@ function JoinConsumer() {
             },
           ]}
         >
-          <InputNumber/>
+          <InputNumber style={{width: "320px"}}/>
         </Form.Item>
         <Form.Item
           name={['user','sex']}
@@ -137,8 +139,10 @@ function JoinConsumer() {
             <Radio value = {"여자"}>여</Radio>
           </Radio.Group>
         </Form.Item>
-        <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-          <Button type="primary" htmlType="submit">
+        <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 10 }}>
+          <Button type="primary" style={{margin: "3px"}}>취소</Button>
+          <Button type="primary" style={{margin: "3px"}}>다시 작성</Button>
+          <Button type="primary" htmlType="submit" style={{margin: "3px"}}>
             Submit
           </Button>
         </Form.Item>
