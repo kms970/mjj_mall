@@ -12,56 +12,59 @@ let mongoModule = {
      * @since 22-02-27
      * 
      */
-    mongoSelectAll:function(collectionName){
-        return new Promise(function(resolve,reject){
+    mongoSelectAll: function (collectionName) {
+        return new Promise(function (resolve, reject) {
             let data = new Array();
-            MongoClient.connect(url, async function(err, database){
-                if(err) {
+            MongoClient.connect(url, async function (err, database) {
+                if (err) {
                     console.log(err);
                     reject(err);
                 }
-                else{
+                else {
                     var cursor = database.db('mjj').collection(collectionName).find();
-            
-                    await cursor.forEach(function(doc){
+
+                    await cursor.forEach(function (doc) {
                         data.push(doc);
                     });
                 }
                 database.close();
                 resolve(data);
             });
-        }); 
+        });
     },
-        /**
-     * choose collection, find all data
+    /**
+     * choose collection, find Many Data
      * 
-     * @param {String} collectionName - Input name of th collection
+     * @param {String} collectionName
+     * @param {Object} queryObj - If find all column, input "{}"
+     * @param {Object} optionsObj - If find all data, input "{}"
+     *  
      * @returns Promise
      * 
      * @author KMS
-     * @since 22-02-27
+     * @since 22-02-28
      * 
      */
-        mongoSelectOne:function(collectionName){
-            return new Promise(function(resolve,reject){
-                let data = new Array();
-                MongoClient.connect(url, async function(err, database){
-                    if(err) {
-                        console.log(err);
-                        reject(err);
-                    }
-                    else{
-                        var cursor = database.db('mjj').collection(collectionName).find();
-                
-                        await cursor.forEach(function(doc){
-                            data.push(doc);
-                        });
-                    }
-                    database.close();
-                    resolve(data);
-                });
-            }); 
-        },
+    mongoSelectMany: function (collectionName, queryObj, optionsObj) {
+        return new Promise(function (resolve, reject) {
+            let data = new Array();
+            MongoClient.connect(url, async function (err, database) {
+                if (err) {
+                    console.log(err);
+                    reject(err);
+                }
+                else {
+                    var cursor = database.db('mjj').collection(collectionName).find(queryObj,optionsObj);
+
+                    await cursor.forEach(function (doc) {
+                        data.push(doc);
+                    });
+                }
+                database.close();
+                resolve(data);
+            });
+        });
+    },
     /**
      * Insert Data of Collection Only One
      * 
@@ -71,14 +74,14 @@ let mongoModule = {
      * @author KMS
      * @since 22-02-27
      */
-    mongoInsertOne:function(collectionName, jsonObj){
-        MongoClient.connect(url, function(err, database){
-            if(err) console.log(err);
-            else{
-                database.db('mjj').collection(collectionName).insertOne(jsonObj, function(err,res){
-                    if(err) {
+    mongoInsertOne: function (collectionName, jsonObj) {
+        MongoClient.connect(url, function (err, database) {
+            if (err) console.log(err);
+            else {
+                database.db('mjj').collection(collectionName).insertOne(jsonObj, function (err, res) {
+                    if (err) {
                         console.log(err);
-                    }else{
+                    } else {
                         console.log('1 Document Insert');
                     }
                     database.close();
@@ -95,14 +98,14 @@ let mongoModule = {
      * @author KMS
      * @since 22-02-27
      */
-    mongoInsertMany:function(collectionName, jsonObj){
-        MongoClient.connect(url, function(err, database){
-            if(err) console.log(err);
-            else{
-                database.db('mjj').collection(collectionName).insertMany(jsonObj, function(err,res){
-                    if(err) {
+    mongoInsertMany: function (collectionName, jsonObj) {
+        MongoClient.connect(url, function (err, database) {
+            if (err) console.log(err);
+            else {
+                database.db('mjj').collection(collectionName).insertMany(jsonObj, function (err, res) {
+                    if (err) {
                         console.log(err);
-                    }else{
+                    } else {
                         console.log('Documents Insert');
                     }
                     database.close();

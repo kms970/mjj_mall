@@ -12,16 +12,26 @@ app.use(function (req, res, next) {
 	next();
 });
 
-// let result = function(res){
-// 	console.log('===========');
-// 	console.log(res);
-// }
+/*
+let result = function(res){
+	console.log('===========');
+	console.log(res);
+}
 
-// mongoDB.mongoSelectAll('member').then(result).catch(function(err){
-// 	console.log(err);
-// });
+mongoDB.mongoSelectMany('member',{"a":"1"},{}).then(result).catch(function(err){
+	console.log(err);
+});
 
-//mongoDB.mongoInsertMany('member',[{'a':'456'},{'a':'678'}]);
+mongoDB.mongoInsertMany('member',[{'a':'456'},{'a':'678'}]);
+
+Select Many Example
+let queryObj = {"a":"1"};
+let optionObj = {
+	sort: {"a":-1}, // -1 = desc
+	projection: {_id:0,"a":1} // _id 출력X , a 출력O
+}
+mongoDB.mongoSelectMany(collectionName, )
+*/
 
 app.use(bodyParser.json());
 
