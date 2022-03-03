@@ -3,7 +3,7 @@ const router = express.Router();
 
 const controller = require('./userRouteController');
 
-router.post('/user/sign-up',controller.signUp);
-router.get('/test_url',controller.testAndroidGet);
+router.post('/sign-up',controller.signUp);
+router.post('/test-url',controller.testAndroidGet);
 
 module.exports=router;
