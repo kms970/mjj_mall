@@ -47,7 +47,7 @@ function Join() {
             <tbody>
               <tr>
                 <td><Link to="/join/consumer"><button>가입하기</button></Link></td>
-                <td><button>가입하기</button></td>
+                <td><Link to="/join/provider"><button>가입하기</button></Link></td>
               </tr>
             </tbody>
           </StyledTable>
