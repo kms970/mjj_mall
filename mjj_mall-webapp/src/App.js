@@ -6,6 +6,7 @@ import Login from './login/Login';
 import Join from './login/Join';
 import JoinConsumer from './login/join/joinConsumer';
 import JoinProvider from './login/join/joinProvider';
+import JoinComplete from "./login/join/JoinComplete";
 function App() {
   return (
    <div>
@@ -16,6 +17,7 @@ function App() {
        <Route path="/join" element={<Join/>} />
        <Route path="/join/consumer" element={<JoinConsumer />} />
        <Route path="/join/provider" element={<JoinProvider />} />
+       <Route path="/join/complete" element={<JoinComplete />} />
      </Routes>
    </div>
   );

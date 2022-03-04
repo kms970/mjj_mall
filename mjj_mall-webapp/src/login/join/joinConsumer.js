@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import {Link, useNavigate } from 'react-router-dom';
 import {Divider, PageHeader, Form, Input, InputNumber, Button, Radio} from 'antd';
 import {StyledHeaderDiv, StyledHeaderSpan, StyledContentH2, StyledJoinDetailTable} from './JoinStyle';
-
+import config from '../../config/config';
+import axios from 'axios';
 
 function JoinConsumer() {
+  const navigate = useNavigate(); //Router push를 위한 함수(redirect)
+  let formRef = React.createRef(); //form 초기화를 위한 변수
+  /**
+   * form의 layout을 설정
+   * @type {{wrapperCol: {span: number}, labelCol: {span: number}}}
+   * @author jslee
+   * @since 2022-03-04
+   */
   const layout = {
     labelCol: {
       span: 10,
@@ -13,6 +23,12 @@ function JoinConsumer() {
     }
   };
 
+  /**
+   * 회원가입 validation
+   * @type {{number: {range: string}, types: {number: string, email: string}, required: string}}
+   * @author jslee
+   * @since 2022-03-04
+   */
   const validateMessages = {
     required: '${label} is required!',
     types: {
@@ -24,8 +40,59 @@ function JoinConsumer() {
     },
   };
 
+  /**
+   * 회원가입을 요청하는 function
+   * @param event 회원가입 정보
+   * @author jslee
+   * @since 2022-03-04
+   */
   const onFinish = (event) => {
     console.log("Join event(회원가입 작성 이벤트)", event);
+    axios.post(config.serverUrl + config.serverPort + config.JoinCustomer,
+      {
+      memberId: event.user.memberId,
+      memberPwd: event.user.memberPwd,
+      memberPwdCheck: event.user.memberPwdCheck,
+      memberEmail: event.user.memberEmail,
+      memberName: event.user.memberName,
+      memberAddress: event.user.memberAddress,
+      memberBirth: event.user.memberBirth,
+      memberPhoneNumber: event.user.memberPhoneNumber,
+      memberSex: event.user.memberSex
+    })
+      .then(res => {
+        console.log("회원가입", res);
+        alert("회원가입 성공");
+        navigate('/join/complete'); //회원가입을 성공하면 화면을 전환
+      })
+      .catch(error => {
+        console.error(error);
+        alert("회원가입 실패");
+      })
+  }
+
+  /**
+   * Form을 초기화 하는 function
+   * @author jslee
+   * @since 2022-03-04
+   */
+  const resetForm = () => {
+    console.log(formRef.toString());
+    formRef.current.setFieldsValue({
+      user: {
+        memberId: undefined,
+        memberPwd: undefined,
+        memberPwdCheck: undefined,
+        memberEmail: undefined,
+        memberName: undefined,
+        memberAddress: undefined,
+        memberBirth: undefined,
+        memberPhoneNumber: undefined,
+        memberSex: undefined
+      }
+    });
+    console.log("초기화 성공");
+
   }
 
   return (
@@ -54,20 +121,20 @@ function JoinConsumer() {
       <Divider style={{margin: '18px 0px'}}/>
 
 
-      <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages} style={{width: "100%"}}>
+      <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages} style={{width: "100%"}} ref={formRef}>
         <Form.Item
-          name={['user', 'id']}
+          name={['user', 'memberId']}
           label="아이디"
           rules={[
             {
-              required: true,
+              // required: true,
             },
           ]}
         >
           <Input />
         </Form.Item>
         <Form.Item
-          name={['user', 'password']}
+          name={['user', 'memberPwd']}
           label="비밀번호"
           rules={[
             {
@@ -78,7 +145,7 @@ function JoinConsumer() {
           <Input.Password />
         </Form.Item>
         <Form.Item
-          name={['user', 'passwordvaild']}
+          name={['user', 'memberPwdCheck']}
           label="비밀번호 확인"
           rules={[
             {
@@ -89,7 +156,7 @@ function JoinConsumer() {
           <Input.Password />
         </Form.Item>
         <Form.Item
-          name={['user', 'email']}
+          name={['user', 'memberEmail']}
           label="이메일"
           rules={[
             {
@@ -100,14 +167,20 @@ function JoinConsumer() {
           <Input />
         </Form.Item>
         <Form.Item
-          name={['user','name']}
+          name={['user','memberName']}
           label="이름"
         >
           <Input/>
         </Form.Item>
         <Form.Item
+          name={['user','memberAddress']}
+          label="주소"
+        >
+          <Input/>
+        </Form.Item>
+        <Form.Item
           {...layout}
-          name={['user','birthday']}
+          name={['user','memberBirth']}
           label="생년월일"
           rules={[
             {
@@ -120,7 +193,7 @@ function JoinConsumer() {
         </Form.Item>
         <Form.Item
           {...layout}
-          name={['user','phone']}
+          name={['user','memberPhoneNumber']}
           label="휴대폰번호"
           rules={[
             {
@@ -131,7 +204,7 @@ function JoinConsumer() {
           <InputNumber style={{width: "320px"}}/>
         </Form.Item>
         <Form.Item
-          name={['user','sex']}
+          name={['user','memberSex']}
           label="성별"
         >
           <Radio.Group>
@@ -140,8 +213,8 @@ function JoinConsumer() {
           </Radio.Group>
         </Form.Item>
         <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 10 }}>
-          <Button type="primary" style={{margin: "3px"}}>취소</Button>
-          <Button type="primary" style={{margin: "3px"}}>다시 작성</Button>
+          <Link to="/dashboard"><Button type="primary" style={{margin: "3px"}}>취소</Button></Link>
+          <Button type="primary" style={{margin: "3px"}} onClick={resetForm}>다시 작성</Button>
           <Button type="primary" htmlType="submit" style={{margin: "3px"}}>
             Submit
           </Button>
