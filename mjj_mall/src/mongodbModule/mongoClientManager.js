@@ -22,13 +22,13 @@ let mongoModule = {
                 }
                 else {
                     var cursor = database.db('mjj').collection(collectionName).find();
-
-                    await cursor.forEach(function (doc) {
+                    await cursor.forEach(function(doc) {
                         data.push(doc);
                     });
+
+                    database.close();
+                    resolve(data);
                 }
-                database.close();
-                resolve(data);
             });
         });
     },
@@ -36,7 +36,7 @@ let mongoModule = {
      * choose collection, find Many Data
      * 
      * @param {String} collectionName
-     * @param {Object} queryObj - If find all column, input "{}"
+     * @param {Object} queryObj - If find all column, input "{}", you want to get {ColumnName:ColumnData}
      * @param {Object} optionsObj - If find all data, input "{}"
      *  
      * @returns Promise
@@ -56,15 +56,44 @@ let mongoModule = {
                 else {
                     var cursor = database.db('mjj').collection(collectionName).find(queryObj,optionsObj);
 
-                    await cursor.forEach(function (doc) {
+                    await cursor.forEach(function(doc) {
                         data.push(doc);
                     });
+
+                    database.close();
+                    resolve(data);
                 }
-                database.close();
-                resolve(data);
             });
         });
     },
+        /**
+     * choose collection, find Only One Data
+     * 
+     * @param {String} collectionName
+     * @param {Object} optionsObj - If find all data, input "{}"
+     *  
+     * @returns Promise
+     * 
+     * @author KMS
+     * @since 22-03-03
+     * 
+     */
+        mongoSelectOne: function (collectionName, optionsObj) {
+            return new Promise(function (resolve, reject) {
+                MongoClient.connect(url, async function (err, database) {
+                    if (err) {
+                        console.log(err);
+                        reject(err);
+                    }
+                    else {
+                        var result = database.db('mjj').collection(collectionName).findOne(optionsObj,function(){
+                            database.close();
+                            resolve(result);
+                        });
+                    }
+                });
+            });
+        },
     /**
      * Insert Data of Collection Only One
      * 
