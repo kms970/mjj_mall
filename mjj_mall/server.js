@@ -51,3 +51,5 @@ const server = app.listen(process.env.PORT || 50001, () => {
 //using router
 const userRoute = require('./routes/user/userRoute');
 app.use('/user', userRoute);
+const companyRoute = require('./routes/company/companyRoute');
+app.use('/company', companyRoute);
