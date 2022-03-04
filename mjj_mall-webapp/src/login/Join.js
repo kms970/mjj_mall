@@ -5,7 +5,7 @@ import {StyledContentDiv, StyledHeaderDiv, StyledHeaderSpan, StyledTable} from '
 
 
 function Join() {
-  return (
+    return (
     <div style={{width:"100%"}}>
       <PageHeader
         className="site-page-header"

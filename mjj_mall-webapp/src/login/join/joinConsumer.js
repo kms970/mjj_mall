@@ -1,4 +1,3 @@
-import React from 'react';
 import React, { useEffect } from 'react';
 import {Link, useNavigate } from 'react-router-dom';
 import {Divider, PageHeader, Form, Input, InputNumber, Button, Radio} from 'antd';
@@ -128,7 +127,7 @@ function JoinConsumer() {
           label="아이디"
           rules={[
             {
-              required: true,
+              // required: true,
             },
           ]}
         >
