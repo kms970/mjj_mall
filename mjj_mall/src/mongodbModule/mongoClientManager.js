@@ -19,8 +19,7 @@ let mongoModule = {
                 if (err) {
                     console.log(err);
                     reject(err);
-                }
-                else {
+                } else {
                     var cursor = database.db('mjj').collection(collectionName).find();
                     await cursor.forEach(function(doc) {
                         data.push(doc);
@@ -52,8 +51,7 @@ let mongoModule = {
                 if (err) {
                     console.log(err);
                     reject(err);
-                }
-                else {
+                }else {
                     var cursor = database.db('mjj').collection(collectionName).find(queryObj,optionsObj);
 
                     await cursor.forEach(function(doc) {
@@ -84,8 +82,7 @@ let mongoModule = {
                     if (err) {
                         console.log(err);
                         reject(err);
-                    }
-                    else {
+                    }else {
                         var result = database.db('mjj').collection(collectionName).findOne(optionsObj,function(){
                             database.close();
                             resolve(result);
