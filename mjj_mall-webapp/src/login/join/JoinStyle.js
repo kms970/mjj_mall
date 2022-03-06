@@ -21,7 +21,6 @@ export const StyledPageHeader = styled(PageHeader)`
 export const StyledHeaderDiv = styled.div`
   display: inline-block;
   //margin: auto;
-  padding: auto;
   float: right;
   text-align: center;
   padding: 16px 24px;

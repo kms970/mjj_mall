@@ -5,18 +5,7 @@ import {StyledContentDiv, StyledHeaderDiv, StyledHeaderSpan, StyledTable} from '
 
 
 function Join() {
-
-  /**
-   * 회원가입을 요청하는 function
-   *
-   * @since 2022-02-24
-   * @author jslee
-   */
-/*  const join = () => {
-
-  }*/
-
-  return (
+    return (
     <div style={{width:"100%"}}>
       <PageHeader
         className="site-page-header"
@@ -57,15 +46,4 @@ function Join() {
     </div>
   );
 }
-
-
-// Join.defaultProps = {
-//   memberName: '',
-//   memberId: '',
-//   memberPwd: '',
-//   memberAddress: '',
-//   memberPhoneNumber: '',
-//   memberBirth: ''
-// }
-
 export default Join;
