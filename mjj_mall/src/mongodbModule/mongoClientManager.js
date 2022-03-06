@@ -68,25 +68,26 @@ let mongoModule = {
      * choose collection, find Only One Data
      * 
      * @param {String} collectionName
+     * @param {Object} queryObj - If find all column, input "{}", you want to get {ColumnName:ColumnData}
      * @param {Object} optionsObj - If find all data, input "{}"
-     *  
+     * 
      * @returns Promise
      * 
      * @author KMS
      * @since 22-03-03
      * 
      */
-        mongoSelectOne: function (collectionName, optionsObj) {
+        mongoSelectOne: function (collectionName, queryObj, optionsObj) {
             return new Promise(function (resolve, reject) {
                 MongoClient.connect(url, async function (err, database) {
                     if (err) {
                         console.log(err);
                         reject(err);
                     }else {
-                        var result = database.db('mjj').collection(collectionName).findOne(optionsObj,function(){
-                            database.close();
-                            resolve(result);
-                        });
+                        var res_arr = new Array();
+                        var result = database.db('mjj').collection(collectionName).find(queryObj,optionsObj).limit(1);
+                        await result.forEach((doc)=>{res_arr.push(doc)});
+                        resolve(res_arr);
                     }
                 });
             });
