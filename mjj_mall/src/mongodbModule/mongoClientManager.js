@@ -34,6 +34,8 @@ let mongoModule = {
     /**
      * choose collection, find Many Data
      * 
+     * ex) options = {"limit": 20,"skip": 10,"sort": "collectionName"}
+     * 
      * @param {String} collectionName
      * @param {Object} queryObj - If find all column, input "{}", you want to get {ColumnName:ColumnData}
      * @param {Object} optionsObj - If find all data, input "{}"
@@ -66,6 +68,8 @@ let mongoModule = {
     },
         /**
      * choose collection, find Only One Data
+     * 
+     * ex) options = {"limit": 20,"skip": 10,"sort": "collectionName"}
      * 
      * @param {String} collectionName
      * @param {Object} queryObj - If find all column, input "{}", you want to get {ColumnName:ColumnData}

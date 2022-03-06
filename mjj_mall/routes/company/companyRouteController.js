@@ -30,7 +30,7 @@ let companyRouteController = {
                     } catch (error) {
                         req.body.companyIndex=1;
                     }
-                   // mongodb.mongoInsertOne('seller',req.body);
+                    //mongodb.mongoInsertOne('seller',req.body);
                     
                     res.status(200).send({"response":'OK'});
                 }).catch(function(err){
