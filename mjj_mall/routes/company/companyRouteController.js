@@ -55,7 +55,9 @@ let companyRouteController = {
         mongodb.mongoSelectAll('company').then(function(selectResult){
             console.log(selectResult);
             res.status(200).send(selectResult);
-        }).catch(function(err){console.log(err);});
+        }).catch(function(err){
+            console.log(err);
+        });
     }
 }
 
