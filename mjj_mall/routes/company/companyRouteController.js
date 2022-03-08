@@ -44,13 +44,13 @@ let companyRouteController = {
     },
 
     "testAndroidGet":function(req,res){
-        // mongodb.mongoSelectMany('company',{"companyName":"테스터"},{sort:{"companyIndex":-1}}).then(function(selectResult){
-        //     console.log(selectResult);
-        //     //mongodb.mongoInsertOne('company',req.body);
-        //     res.status(200).send({data:req.body});
-        // }).catch(function(err){
-        //     console.log(err);
-        // });
+        mongodb.mongoSelectMany('company',{"companyName":"테스터"},{sort:{"companyIndex":-1}}).then(function(selectResult){
+            console.log(selectResult);
+            //mongodb.mongoInsertOne('company',req.body);
+            res.status(200).send({data:req.body});
+        }).catch(function(err){
+            console.log(err);
+        });
 
         mongodb.mongoSelectAll('company').then(function(selectResult){
             console.log(selectResult);
