@@ -1,5 +1,8 @@
 const mongodb = require("../../src/mongodbModule/mongoClientManager");
 
+// RSA 와 AES 공부
+// REST API 보안 공부
+
 const regExpId = /^admin|^administrator|^root/gi;
 const regExpName = /^admin|^administrator|^root/gi;
 
