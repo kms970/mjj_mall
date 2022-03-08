@@ -4,7 +4,6 @@ import {Divider, PageHeader, Form, Input, InputNumber, Button, Radio} from 'antd
 import {StyledHeaderDiv, StyledHeaderSpan, StyledContentH2, StyledJoinDetailTable} from './JoinStyle';
 import config from '../../config/config';
 import axios from 'axios';
-import { JoinRequest } from '../../common/CommonFunction';
 
 function JoinConsumer() {
   const navigate = useNavigate(); //Router push를 위한 함수(redirect)
@@ -76,25 +75,6 @@ function JoinConsumer() {
         console.error(error);
         alert("회원가입 실패");
       })
-
-    /**
-     * 모듈화 진행 중
-     *
-     * @author jslee
-     * @since 2022-03-05
-     */
-    // JoinRequest(config.serverUrl + config.serverPort + config.JoinCustomer,
-    //   {
-    //     memberId: event.user.memberId,
-    //     memberPwd: event.user.memberPwd,
-    //     memberPwdCheck: event.user.memberPwdCheck,
-    //     memberEmail: event.user.memberEmail,
-    //     memberName: event.user.memberName,
-    //     memberAddress: event.user.memberAddress,
-    //     memberBirth: event.user.memberBirth,
-    //     memberPhoneNumber: event.user.memberPhoneNumber,
-    //     memberSex: event.user.memberSex
-    //   })
   }
 
   /**
