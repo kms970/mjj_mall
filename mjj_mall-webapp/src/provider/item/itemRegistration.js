@@ -67,22 +67,22 @@ function ItemRegistration() {
         {/* 상품 이미지 */}
         <tr>
           <td>상품 이미지</td>
-          <td>이미지 공간</td>
+          <td colSpan="4">이미지 공간</td>
         </tr>
         {/* 상품 가격 */}
         <tr>
           <td>상품 가격</td>
-          <td><Input type="text"/></td>
+          <td colSpan="4"><Input type="text"/></td>
         </tr>
         {/* 상품 등록일 */}
         <tr>
           <td>상품 등록일</td>
-          <td><Input type="text" defaultValue={currenttime}/></td>
+          <td colSpan="4"><Input type="text" defaultValue={currenttime}/></td>
         </tr>
         {/* 전화 번호 */}
         <tr>
           <td>전화번호</td>
-          <td><Input type="number"/></td>
+          <td colSpan="4"><Input type="number"/></td>
         </tr>
         </tbody>
       </table>
