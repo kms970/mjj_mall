@@ -4,7 +4,7 @@ const regExpId = /^admin|^administrator|^root/gi;
 const regExpName = /^admin|^administrator|^root/gi;
 
 let companyRouteController = {
-    "signUp":function(req,res){
+    signUp:function(req,res){
         console.log(req.body);
        // mongodb.mongoInsertOne('seller',req.body);
         let isExistId = Object.keys(req.body).includes('companyId'); //companyId 키값 존재하는지 확인
@@ -43,7 +43,7 @@ let companyRouteController = {
         }
     },
 
-    "testAndroidGet":function(req,res){
+    testAndroidGet:function(req,res){
         mongodb.mongoSelectMany('company',{"companyName":"테스터"},{sort:{"companyIndex":-1}}).then(function(selectResult){
             console.log(selectResult);
             //mongodb.mongoInsertOne('company',req.body);
