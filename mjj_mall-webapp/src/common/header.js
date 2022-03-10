@@ -1,25 +1,41 @@
-import {Menu, PageHeader, Button, Input, Select, Divider} from "antd";
+import { PageHeader, Button, Input, Select, Divider } from "antd";
 import React, {useState} from "react";
 import {Link, Outlet} from "react-router-dom";
-import {MenuOutlined, MenuUnfoldOutlined, MenuFoldOutlined, SearchOutlined  } from "@ant-design/icons";
+import { MenuUnfoldOutlined, MenuFoldOutlined, SearchOutlined  } from "@ant-design/icons";
 import MenuFunction from "./Menu";
 
 function Header() {
+
   const [MenuVisble, setMenuVisble] = useState(false);
   const [searchType, setSearchType] = useState("");
   const [searchInputData, setSearchInputData] = useState("");
   const { Option } = Select;
-  const SubMenu = Menu.SubMenu;
 
-
+  /**
+   * Header에 메뉴를 보이고, 안보이고 하게 만드는 토글
+   * @author jslee
+   * @since 2022-03-09
+   */
   const visbleToggle = () => {
     setMenuVisble(!MenuVisble);
   }
 
+  /**
+   * header에 입력 값을 받는 부분
+   * @param e 입력값
+   * @since 2022-03-09
+   * @author jslee
+   */
   const setSearchInputDataFunction = (e) => {
     setSearchInputData(e.target.value);
   }
 
+  /**
+   * 검색을 눌렀을 때, 검색을 실행하는 부분
+   *
+   * @author jslee
+   * @since 2022-03-09
+   */
   const submitSearchData = () => {
     console.log("검색 타입: ", searchType, ", 검색 내용: ", searchInputData);
   }
@@ -54,12 +70,12 @@ function Header() {
       </div>
       <Divider />
       <div style={{float:"right"}}>
-          <span style={{margin:"3px"}}>
-            <Link to="/login">로그인</Link>
-          </span>
         <span style={{margin:"3px"}}>
-            <Link to="/join">회원가입</Link>
-          </span>
+          <Link to="/login">로그인</Link>
+        </span>
+        <span style={{margin:"3px"}}>
+          <Link to="/join">회원가입</Link>
+        </span>
       </div>
       {
         MenuVisble ? <MenuFunction/> : <></>
