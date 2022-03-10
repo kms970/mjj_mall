@@ -9,13 +9,14 @@ import JoinProvider from './login/join/joinProvider';
 import JoinComplete from "./login/join/JoinComplete";
 import {PageHeader} from "antd";
 import Header from "./common/header";
+import MenuFunction from "./common/Menu";
 function App() {
   return (
    <div>
      <BrowserRouter>
        <Routes>
          <Route element={<Header />}>
-           <Route path="/" element={<Dashboard/>}/>
+             <Route path="/" element={<Dashboard/>}/>
          </Route>
          <Route path="/login" element={<Login/>} />
          <Route path="/join" element={<Join/>} />
