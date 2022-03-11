@@ -4,7 +4,7 @@ const regExpId = /^admin|^administrator|^root/gi;
 const regExpName = /^admin|^administrator|^root/gi;
 
 let userRouteController = {
-    "signUp":function(req,res){
+    signUp:function(req,res){
         let isExistId = Object.keys(req.body).includes('memberId'); //memberId 키값 존재하는지 확인
         let isExistName = Object.keys(req.body).includes('memberName');
         try {
@@ -41,7 +41,7 @@ let userRouteController = {
         }
     },
 
-    "testAndroidGet":function(req,res){
+    testAndroidGet:function(req,res){
         // mongodb.mongoSelectMany('member',{"memberName":"테스터"},{sort:{"memberIndex":-1}}).then(function(selectResult){
         //     console.log(selectResult);
         //     //mongodb.mongoInsertOne('member',req.body);
