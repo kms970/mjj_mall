@@ -1,15 +1,17 @@
 import React,{ useState } from 'react';
-import {Divider, PageHeader, Input, Select, Button } from "antd";
+import {Divider, PageHeader, Input, Select, Button, Form } from "antd";
 
+
+/*
 function ItemRegistration() {
   const { Option } = Select;
   const currenttime = new Date();
   currenttime.setHours(currenttime.getHours() + 9);
   let currentTimeFormat = currenttime.toISOString().replace('T'," ").substring(0, 19);
 
-  /**
+  /!**
    * 상품 등록 페이지에서 받을 상품 정보
-   */
+   *!/
   const [product, setproduct] = useState({
     productName: '',
     productCompany: '',
@@ -22,13 +24,13 @@ function ItemRegistration() {
   });
 
 
-  /**
+  /!**
    * input 값을 받는 functions
    * @param e input 값
    * @returns {Promise<void>} 동기를 맞추기 위해서 사용
    * @author jslee
    * @since 2022-03-12
-   */
+   *!/
   const onChangeFunction = async(e) => {
     const {value, name} = e.target;
 
@@ -38,22 +40,22 @@ function ItemRegistration() {
     })
   }
 
-  /**
+  /!**
    * 카테고리 소분류를 선택했을 때, function
    * @param e 선택한 소분류 카테고리
    * @author jslee
    * @since 2022-03-12
-   */
+   *!/
   const categotySelect = (e) => {
     const {value, name} = e.target;
 
   }
 
-  /**
+  /!**
    * 등록을 요청하는 functions
    * @author jslee
    * @since 2022-03-12
-   */
+   *!/
   const onsubmitFunction = () => {
     console.log("등록", product);
   }
@@ -67,17 +69,17 @@ function ItemRegistration() {
       <Divider />
       <table>
         <tbody>
-        {/* 상품명 */}
+        {/!* 상품명 *!/}
         <tr>
           <td>상품명(필수)</td>
           <td colSpan="4"><Input type="text" name="productName" onChange={onChangeFunction}/></td>
         </tr>
-        {/* 판매업체 */}
+        {/!* 판매업체 *!/}
         <tr>
           <td>판매업체</td>
           <td colSpan="4"><Input type="text" name="productCompany" onChange={onChangeFunction}/></td>
         </tr>
-        {/* 카테고리 */}
+        {/!* 카테고리 *!/}
         <tr>
           <td>카테고리</td>
           <td>
@@ -118,22 +120,22 @@ function ItemRegistration() {
             </Select>
           </td>
         </tr>
-        {/* 상품 이미지 */}
+        {/!* 상품 이미지 *!/}
         <tr>
           <td>상품 이미지</td>
           <td colSpan="4">이미지 공간</td>
         </tr>
-        {/* 상품 가격 */}
+        {/!* 상품 가격 *!/}
         <tr>
           <td>상품 가격</td>
           <td colSpan="4"><Input type="text" onChange={onChangeFunction} name="productPrice"/></td>
         </tr>
-        {/* 상품 등록일 */}
+        {/!* 상품 등록일 *!/}
         <tr>
           <td>상품 등록일</td>
           <td colSpan="4"><Input type="text" defaultValue={currentTimeFormat} onChange={onChangeFunction} name="productRegistrationDate"/></td>
         </tr>
-        {/* 전화 번호 */}
+        {/!* 전화 번호 *!/}
         <tr>
           <td>전화번호</td>
           <td colSpan="4"><Input type="number" onChange={onChangeFunction} name="productNumber"/></td>
@@ -143,6 +145,112 @@ function ItemRegistration() {
       <Button onClick={onsubmitFunction}>등록하기</Button>
     </div>
   )
+}*/
+
+function ItemRegistration() {
+  const { Option } = Select;
+  const [form] = Form.useForm();
+  const formItemLayout = {
+    labelCol: {
+      xs: {
+        span: 16,
+      },
+      sm: {
+        span: 4,
+      },
+    },
+    wrapperCol: {
+      xs: {
+        span: 16,
+      },
+      sm: {
+        span: 8,
+      },
+    },
+  };
+  const tailFormItemLayout = {
+    wrapperCol: {
+      xs: {
+        span: 24,
+        offset: 0,
+      },
+      sm: {
+        span: 16,
+        offset: 8,
+      },
+    },
+  };
+
+  const onFinish = (values) => {
+    console.log("Received values of form: ", values);
+  }
+
+  const prefixSelector = (
+    <Form.Item name="prefix" noStyle>
+      <Select style={{width: 170}}>
+        <Option value="1">+1(USA)</Option>
+        <Option value="82">+82(south of Korea)</Option>
+      </Select>
+    </Form.Item>
+  )
+
+  return (
+    <div style={{width: '100%'}}>
+      <PageHeader
+        className="site-page-header"
+        title="상품등록"
+      />
+      <Divider />
+      <Form
+        {...formItemLayout}
+        form={form}
+        name="product"
+        onFinish={onFinish}
+        initialValues={{
+          prefix: '82',
+        }}
+        scrollToFirstError
+      >
+        <Form.Item
+          name="productName"
+          label="상품명"
+          rules={[
+            {
+              required: true,
+              message: 'Please input product Name',
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          name="productNumber"
+          label="전화번호"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your phone number!',
+            },
+          ]}
+        >
+          <Input
+            addonBefore={prefixSelector}
+            style={{
+              width: '100%',
+            }}
+          />
+        </Form.Item>
+
+        <Form.Item {...tailFormItemLayout}>
+          <Button type="primary" htmlType="submit">
+            상품 등록
+          </Button>
+        </Form.Item>
+      </Form>
+    </div>
+  )
 }
+
 
 export default ItemRegistration;
