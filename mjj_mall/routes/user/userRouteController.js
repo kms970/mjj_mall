@@ -7,7 +7,6 @@ let userRouteController = {
                 'sort': ['memberIndex', 'desc']
             };
             mongodb.mongoSelectOne('seller', options).then(function (selectResult) {
-                console.log(selectResult);
                 try {
                     req.body.memberIndex = selectResult[0].memberIndex;
                     req.body.memberIndex++;
