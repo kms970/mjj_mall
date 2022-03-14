@@ -1,6 +1,6 @@
 const mongodb = require("../../src/mongodbModule/mongoClientManager");
 
-let userRouteController = {
+let userSignUp = {
     signUp: function (req, res, next) {
         var options = {
             'sort': ['memberIndex', 'desc']
@@ -40,4 +40,4 @@ let userRouteController = {
     // }
 }
 
-module.exports = userRouteController;
+module.exports = userSignUp;
