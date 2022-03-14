@@ -5,7 +5,7 @@ import {StyledHeaderDiv, StyledHeaderSpan, StyledContentH2, StyledJoinDetailTabl
 import config from '../../config/config';
 import axios from 'axios';
 
-function JoinConsumer() {
+function JoinConsumer(message) {
   const navigate = useNavigate(); //Router push를 위한 함수(redirect)
   let formRef = React.createRef(); //form 초기화를 위한 변수
   /**
@@ -72,8 +72,8 @@ function JoinConsumer() {
         navigate('/join/complete'); //회원가입을 성공하면 화면을 전환
       })
       .catch(error => {
-        console.error(error);
-        alert("회원가입 실패");
+        console.error(error.response);
+        alert("회원가입 실패: " + error.response.data.customError);
       })
   }
 
@@ -133,7 +133,7 @@ function JoinConsumer() {
           label="아이디"
           rules={[
             {
-              required: true,
+              // required: true,
             },
           ]}
         >
