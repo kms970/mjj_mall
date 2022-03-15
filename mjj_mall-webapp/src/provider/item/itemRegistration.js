@@ -242,6 +242,33 @@ function ItemRegistration() {
           />
         </Form.Item>
 
+        <Form.Item
+          name="productPrice"
+          label="상품가격"
+          rules={[
+            {
+              type:'number',
+              required: true,
+              message: 'Please input your product Price!',
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          name="productCompany"
+          label="판매업체"
+          rules={[
+            {
+              required: true,
+              message: 'Please input product Company',
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
             상품 등록
