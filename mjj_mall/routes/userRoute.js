@@ -8,7 +8,7 @@ router.post('/sign-up',
     validation.userValidation,
     controller.signUp,
     async (req, res) => {
-        res.status(200).send(req.changeResponse);
+        res.status(200).send({response:'SUC'});
     }
 );
 

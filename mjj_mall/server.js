@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const ejs = require('ejs')
 const path = require('path')
 const static = require('serve-static');
-const mongoDB = require('./src/mongodbModule/mongoClientManager');
 
 /*
 let result = function(res){
