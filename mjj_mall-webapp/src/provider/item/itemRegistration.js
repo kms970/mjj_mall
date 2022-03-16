@@ -181,6 +181,51 @@ function ItemRegistration() {
     },
   };
 
+  const categoryData = {
+    "categoryGrp": ["브랜드패션", "트렌드패션", "뷰티", "식품", "가전/디지털"],
+    "majorCategory": {
+      "브랜드패션": ["브랜드여성", "브랜드남성", "브랜드키즈", "브랜드공용"],
+      "트렌드패션": ["트렌드여성", "트렌드남성", "트렌드키즈", "트렌드공용"],
+      "가전/디지털": ["가전", "컴퓨터", "디지털"]
+    },
+    "midCategory": {
+      "브랜드여성": ["브랜드/여성/상의","브랜드/여성/하의","브랜드/여성/셔츠","브랜드/여성/원피스","브랜드/여성/속옷"],
+      "트렌드여성": ["트렌드/여성/상의","트렌드/여성/하의","트렌드/여성/셔츠","트렌드/여성/원피스","트렌드/여성/속옷"],
+      "가전": ["TV","냉장고","세탁기/건조기","주방가전","생활가전", "렌탈/가입상품"],
+      "디지털": ["휴대폰","휴대폰 악세서리","스마트기기","카메라/주변기기","태블릿","게임"]
+    },
+    "smallCategory":{
+      "TV": ["106cm 이하(~42인치)","107~137cm(43인치~54인치)","TV 주변기기"],
+      "냉장고":["4도어","양문형"]
+    }
+  }
+
+  const [categoryGroup, setCategoryGroup] = useState(categoryData['categoryGrp']);
+  const [categoryGrpSelect,setCategoryGrpSelect]= useState('');
+  const [midCategorySelect,setMidCategorySelect]= useState('');
+  const [majorCategoty, setMajorCategory] = useState(categoryData['majorCategory']['브랜드패션'])
+  const [middleCategoty, setMiddleCategory] = useState(categoryData['midCategory']['브랜드여성'])
+  
+  const majorCategoryHandler = (value) => {
+    if(categoryData['majorCategory'][value]==null||categoryData['majorCategory'][value]==undefined){
+
+    }else {
+      console.log("value", value);
+      setMajorCategory(categoryData['majorCategory'][value]);
+      setMidCategorySelect(value);
+    }
+  }
+  
+  const middleCategoryHandler = (value) => {
+    if(categoryData['midCategory'][value]==null||categoryData['midCategory'][value] == undefined) {
+
+    } else {
+      console.log("value", value);
+      setMiddleCategory(categoryData['midCategory'][value]);
+      setMidCategorySelect(value);
+    }
+  }
+
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
   }
@@ -274,6 +319,22 @@ function ItemRegistration() {
             상품 등록
           </Button>
         </Form.Item>
+
+        <Select defaultValue={categoryGroup[0]} style={{ width: 150 }} onChange={majorCategoryHandler}>
+          {categoryGroup.map(categoryGrp => (
+            <Option key={categoryGrp}>{categoryGrp}</Option>
+          ))}
+        </Select>
+        <Select style={{ width: 150 }} value={majorCategoty[0]} onChange={middleCategoryHandler}>
+          {majorCategoty.map(majorCtgry => (
+            <Option key={majorCtgry}>{majorCtgry}</Option>
+          ))}
+        </Select>
+        <Select style={{ width: 200 }} value={middleCategoty[0]}>
+          {middleCategoty.map(midCtgry => (
+            <Option key={midCtgry}>{midCtgry}</Option>
+          ))}
+        </Select>
       </Form>
     </div>
   )
