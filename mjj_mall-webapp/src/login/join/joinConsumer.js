@@ -4,6 +4,10 @@ import {Divider, PageHeader, Form, Input, InputNumber, Button, Radio} from 'antd
 import {StyledHeaderDiv, StyledHeaderSpan, StyledContentH2, StyledJoinDetailTable} from './JoinStyle';
 import config from '../../config/config';
 import axios from 'axios';
+import cryptoFunction, { cryptotoSha512 } from '../../common/crypto';
+const crypto = require('crypto');
+
+
 
 function JoinConsumer(message) {
   const navigate = useNavigate(); //Router push를 위한 함수(redirect)
@@ -52,9 +56,16 @@ function JoinConsumer(message) {
    * @author jslee
    * @since 2022-03-04
    */
-  const onFinish = (event) => {
-    console.log("Join event(회원가입 작성 이벤트)", event);
-    axios.post(config.serverUrl + config.serverPort + config.JoinCustomer,
+  const onFinish = async(event) => {
+    //salt를 사용한 암호화 구현 중
+    // console.log("Join event(회원가입 작성 이벤트)", event);
+    // let a = cryptoFunction(event.memberPwd);
+    // console.log("a",a);
+
+    let encodingPassword = cryptotoSha512(event.user.memberPwd);
+    console.log("onFinish",encodingPassword);
+
+    await axios.post(config.serverUrl + config.serverPort + config.JoinCustomer,
       {
         memberId: event.user.memberId,
         memberPwd: event.user.memberPwd,
@@ -73,7 +84,8 @@ function JoinConsumer(message) {
       })
       .catch(error => {
         console.error(error.response);
-        alert("회원가입 실패: " + error.response.data.customError);
+        if(error.response.data.customError !== undefined || error.response.data.customError !== null) alert("회원가입 실패: " + error.response.data.customError);
+        else alert("회원가입 실패: " + error);
       })
   }
 
