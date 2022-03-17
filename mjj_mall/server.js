@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const ejs = require('ejs')
 const path = require('path')
 const static = require('serve-static');
-const mongoDB = require('./src/mongodbModule/mongoClientManager');
 
 /*
 let result = function(res){
@@ -50,7 +49,7 @@ const server = app.listen(process.env.PORT || 50001, () => {
 });
 
 //using router
-const userRoute = require('./routes/user/userRoute');
+const userRoute = require('./routes/userRoute');
 app.use('/user', userRoute);
-const companyRoute = require('./routes/company/companyRoute');
+const companyRoute = require('./routes/companyRoute');
 app.use('/company', companyRoute);

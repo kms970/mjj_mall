@@ -1,4 +1,4 @@
-const validationCheck = require('../../src/validationModule/validation');
+const validationCheck = require('../../customUtils/validationModule/validation');
 
 module.exports ={
     companyValidation : async(req,res,next) =>{
