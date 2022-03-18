@@ -15,9 +15,31 @@ module.exports = {
             } catch (error) {
                 jsonObj.memberIndex = 1;
             }
-            //mongodb.mongoInsertOne('member',jsonObj);
+            mongodb.mongoInsertOne('member',jsonObj);
 
             result.response = "SUC";
+        }).catch(function (err) { //mongoDB 에러시
+            result.response = "FAILED";
+            result.error = err;
+        });
+
+        return result;
+    },
+    signIn : async (jsonObj)=>{
+        var options = {
+            memberId:jsonObj.memberId,
+            memberPwd:jsonObj.memberPwd
+        }
+        let result = new Object();
+
+        await mongodb.mongoSelectOne('member', options).then(function (selectResult) {
+            console.log(selectResult);
+            if(selectResult[0]){
+                result.response = "SUC";
+            }else{
+                result.response = "FAILED";
+                result.error = "ID or PWD is not exist!";
+            }
         }).catch(function (err) { //mongoDB 에러시
             result.response = "FAILED";
             result.error = err;
