@@ -6,6 +6,12 @@ const TOKEN_EXPIRED = -3;
 const TOKEN_INVALID = -2;
 
 module.exports = {
+    /**
+     * make JWT
+     * 
+     * @param {Object} payload 
+     * @returns 
+     */
     sign : async(payload) =>{
         const result = {
             token : jwt.sign(payload,secretKey,options),
