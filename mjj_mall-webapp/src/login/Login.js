@@ -3,6 +3,9 @@ import {Link} from 'react-router-dom';
 import {Button, Checkbox, Divider, Form, Input, PageHeader} from 'antd';
 import styled from 'styled-components';
 import {CheckOutlined} from '@ant-design/icons';
+import axios from 'axios';
+import config from '../config/config';
+import cryptoFunction, { cryptotoSha512 } from '../common/crypto';
 
 /**
  * StyledButton button의 style을 지정
@@ -34,11 +37,27 @@ function Login() {
   /**
    * 로그인을 요청하는 함수
    *
+   * @param event 로그인 요청 데이터(ID, Password)
    * @author jslee
    * @since 2022-02-24
    */
   const loginRequest = (event) => {
     console.log("login event", event);
+    let encodingPwd = cryptotoSha512(event.memberPwd)
+
+    axios.post(config.serverUrl + config.serverPort+ config.Login, {
+      memberId: event.memberId,
+      memberPwd: encodingPwd
+    })
+      .then(res =>{
+        console.log("response", res);
+        alert("로그인 성공!");
+      })
+      .catch(error => {
+        if(error.response.data.customError !== undefined || error.response.data.customError !== null) alert("로그인 실패: " + error.response.data.customError);
+        else alert("로그인 실패: " + error);
+      }
+    )
   }
 
   return (

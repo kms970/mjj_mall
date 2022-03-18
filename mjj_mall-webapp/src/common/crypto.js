@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-const shasum = crypto.createHash("sha512");
+
 
 export default async function cryptoFunction(req){
   await crypto.randomBytes(54, (err, buf) =>{
@@ -17,6 +17,7 @@ export default async function cryptoFunction(req){
 }
 
 export function cryptotoSha512(password) {
+  const shasum = crypto.createHash("sha512");
   shasum.update(password);
   let encodingPassword = shasum.digest('hex');
   console.log("encodingPassword",encodingPassword);
