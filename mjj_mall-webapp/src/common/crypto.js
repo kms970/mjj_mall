@@ -1,6 +1,4 @@
 const crypto = require('crypto');
-
-
 export default async function cryptoFunction(req){
   await crypto.randomBytes(54, (err, buf) =>{
     const salt = buf.toString("base64");

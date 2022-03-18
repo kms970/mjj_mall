@@ -61,6 +61,7 @@ function JoinConsumer(message) {
     // console.log("Join event(회원가입 작성 이벤트)", event);
     // let a = cryptoFunction(event.memberPwd);
     // console.log("a",a);
+    
     let encodingPassword;
     let encodingPasswordCheck;
     if(event.user.memberPwd === event.user.memberPwdCheck) {
@@ -70,7 +71,6 @@ function JoinConsumer(message) {
       encodingPasswordCheck = cryptotoSha512(event.user.memberPwdCheck);
       console.log("onFinish ",encodingPasswordCheck);
     }
-
 
     await axios.post(config.serverUrl + config.serverPort + config.JoinCustomer,
       {
