@@ -1,7 +1,7 @@
-const randToken = require('rand-token');
 const jwt = require('jsonwebtoken');
 const secretKey = require('../../config/secretkey').ACCESS_TOKEN_SECRET;
-const options = require('../../config/secretkey').option;
+const accessOptions = require('../../config/secretkey').accessOptions;
+const refreshOption = require('../../config/secretkey').refreshOption;
 const TOKEN_EXPIRED = -3;
 const TOKEN_INVALID = -2;
 
@@ -14,8 +14,8 @@ module.exports = {
      */
     sign : async(payload) =>{
         const result = {
-            token : jwt.sign(payload,secretKey,options),
-            refreshToken : randToken.uid(256)
+            accessToken : jwt.sign(payload,secretKey,accessOptions),
+            refreshToken : jwt.sign(payload,secretKey,refreshOption)
         };
 
         return result;

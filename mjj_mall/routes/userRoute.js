@@ -14,13 +14,12 @@ router.post('/sign-up',
     }
 );
 
+//보내는 데이터: 토큰, status(200), 개인인지 판매자인지
 router.post('/sign-in', 
 async(req,res)=>{
     let result = await loginTest.signIn(req.body,'user');
-    
-    console.log(result);
 
-    if(result.error == null){
+    if(result.err == null){
         res.status(200).send(result);
     }else{
         res.status(401).send(result);

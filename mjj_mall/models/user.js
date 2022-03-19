@@ -1,23 +1,36 @@
 const mongodb = require("../customUtils/mongodbModule/mongoClientManager");
 
 module.exports = {
-    signUp : async (jsonObj)=>{
-        var options = {
+    signUp: async (jsonObj) => {
+        var indexOptions = {
             'sort': ['memberIndex', 'desc']
-        }
+        };
+
+        var queryOptions = {
+            memberId: jsonObj.memberId
+        };
 
         let result = new Object();
 
-        await mongodb.mongoSelectOne('member', options).then(function (selectResult) {
-            try {
-                jsonObj.memberIndex = selectResult[0].memberIndex;
-                jsonObj.memberIndex++;
-            } catch (error) {
-                jsonObj.memberIndex = 1;
-            }
-            mongodb.mongoInsertOne('member',jsonObj);
+        // await mongodb.mongoSelectOne('member', {}, indexOptions).then(function (selectResult) {
+        //     try {
+        //         jsonObj.memberIndex = selectResult[0].memberIndex;
+        //         jsonObj.memberIndex++;
+        //     } catch (error) {
+        //         jsonObj.memberIndex = 1;
+        //     }
+        // }).catch(function (err) { //mongoDB 에러시
+        //     result.response = "FAILED";
+        //     result.error = err;
+        // });
 
-            result.response = "SUC";
+        await mongodb.mongoSelectOne('member',queryOptions,{}).then(function(selectResult){
+            if(selectResult.length != 0){
+                result.response = "FAILED";
+            }else{
+                mongodb.mongoInsertOne('member', jsonObj);
+                result.response = "SUC";
+            }
         }).catch(function (err) { //mongoDB 에러시
             result.response = "FAILED";
             result.error = err;
@@ -25,24 +38,19 @@ module.exports = {
 
         return result;
     },
-    signIn : async (jsonObj)=>{
+    signIn: async (jsonObj) => {
         var options = {
-            memberId:jsonObj.memberId,
-            memberPwd:jsonObj.memberPwd
+            memberId: jsonObj.memberId,
+            memberPwd: jsonObj.memberPwd
         }
         let result = new Object();
 
         await mongodb.mongoSelectOne('member', options).then(function (selectResult) {
-            console.log(selectResult);
-            if(selectResult[0]){
-                result.response = "SUC";
-            }else{
-                result.response = "FAILED";
-                result.error = "ID or PWD is not exist!";
-            }
+            result.memberIndex = selectResult[0].memberIndex;
+            result.memberBirth = selectResult[0].memberBirth;
+            result.err = null;
         }).catch(function (err) { //mongoDB 에러시
-            result.response = "FAILED";
-            result.error = err;
+            result.err = err;
         });
 
         return result;
