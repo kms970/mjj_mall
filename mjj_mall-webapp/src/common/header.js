@@ -68,7 +68,7 @@ function Header() {
           <span><Button onClick={submitSearchData}><SearchOutlined /></Button></span>
         </div>
       </div>
-      <Divider />
+
       <div style={{float:"right"}}>
         <span style={{margin:"3px"}}>
           <Link to="/login">로그인</Link>
@@ -77,6 +77,7 @@ function Header() {
           <Link to="/join">회원가입</Link>
         </span>
       </div>
+      <Divider />
       {
         MenuVisble ? <MenuFunction/> : <></>
       }

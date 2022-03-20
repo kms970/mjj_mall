@@ -184,25 +184,28 @@ function ItemRegistration() {
   const categoryData = {
     "categoryGrp": ["브랜드패션", "트렌드패션", "뷰티", "식품", "가전/디지털"],
     "majorCategory": {
+      "전체":["전체"],
       "브랜드패션": ["브랜드여성", "브랜드남성", "브랜드키즈", "브랜드공용"],
       "트렌드패션": ["트렌드여성", "트렌드남성", "트렌드키즈", "트렌드공용"],
       "가전/디지털": ["가전", "컴퓨터", "디지털"]
     },
     "midCategory": {
+      "전체":["전체"],
       "브랜드여성": ["브랜드/여성/상의","브랜드/여성/하의","브랜드/여성/셔츠","브랜드/여성/원피스","브랜드/여성/속옷"],
       "트렌드여성": ["트렌드/여성/상의","트렌드/여성/하의","트렌드/여성/셔츠","트렌드/여성/원피스","트렌드/여성/속옷"],
       "가전": ["TV","냉장고","세탁기/건조기","주방가전","생활가전", "렌탈/가입상품"],
       "디지털": ["휴대폰","휴대폰 악세서리","스마트기기","카메라/주변기기","태블릿","게임"]
     },
     "smallCategory":{
+      "전체":["전체"],
       "TV": ["106cm 이하(~42인치)","107~137cm(43인치~54인치)","TV 주변기기"],
       "냉장고":["4도어","양문형"]
     }
   }
 
   const [categoryGroup, setCategoryGroup] = useState(categoryData['categoryGrp']);
-  const [categoryGrpSelect,setCategoryGrpSelect]= useState('');
-  const [midCategorySelect,setMidCategorySelect]= useState('');
+  const [categoryGrpSelect,setCategoryGrpSelect]= useState(categoryData['categoryGrp'][0]);
+  const [MajorCategorySelect,setMajorCategorySelect]= useState(categoryData['majorCategory']['전체'][0]);
   const [majorCategoty, setMajorCategory] = useState(categoryData['majorCategory']['브랜드패션'])
   const [middleCategoty, setMiddleCategory] = useState(categoryData['midCategory']['브랜드여성'])
   
@@ -212,7 +215,7 @@ function ItemRegistration() {
     }else {
       console.log("value", value);
       setMajorCategory(categoryData['majorCategory'][value]);
-      setMidCategorySelect(value);
+      setCategoryGrpSelect(value);
     }
   }
   
@@ -222,7 +225,7 @@ function ItemRegistration() {
     } else {
       console.log("value", value);
       setMiddleCategory(categoryData['midCategory'][value]);
-      setMidCategorySelect(value);
+      setMajorCategorySelect(value);
     }
   }
 
@@ -320,12 +323,16 @@ function ItemRegistration() {
           </Button>
         </Form.Item>
 
-        <Select defaultValue={categoryGroup[0]} style={{ width: 150 }} onChange={majorCategoryHandler}>
+        {/*
+          생각을 좀 해봐야 할 것 같음
+          카테고리
+        */}
+        <Select defaultValue={categoryGrpSelect} style={{ width: 150 }} onChange={majorCategoryHandler}>
           {categoryGroup.map(categoryGrp => (
             <Option key={categoryGrp}>{categoryGrp}</Option>
           ))}
         </Select>
-        <Select style={{ width: 150 }} value={majorCategoty[0]} onChange={middleCategoryHandler}>
+        <Select style={{ width: 150 }} value={MajorCategorySelect} onChange={middleCategoryHandler}>
           {majorCategoty.map(majorCtgry => (
             <Option key={majorCtgry}>{majorCtgry}</Option>
           ))}
@@ -335,6 +342,8 @@ function ItemRegistration() {
             <Option key={midCtgry}>{midCtgry}</Option>
           ))}
         </Select>
+
+
       </Form>
     </div>
   )
