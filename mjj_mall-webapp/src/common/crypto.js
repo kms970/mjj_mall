@@ -39,3 +39,12 @@ export function cryptotoSha512(password) {
 
   return encodingPassword;
 }
+
+export function base64DecodingFunc(jwt_token) {
+  let base64EncodedText = jwt_token.split('.');
+  let base64DecodedText = Buffer.from(base64EncodedText[1], "base64").toString('utf-8');
+  console.log("Base64 Decoded Text : ", base64DecodedText);
+  let josnBase64DecodedText = JSON.parse(base64DecodedText);
+
+  return josnBase64DecodedText;
+}

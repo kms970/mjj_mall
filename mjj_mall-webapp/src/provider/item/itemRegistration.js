@@ -342,8 +342,6 @@ function ItemRegistration() {
             <Option key={midCtgry}>{midCtgry}</Option>
           ))}
         </Select>
-
-
       </Form>
     </div>
   )

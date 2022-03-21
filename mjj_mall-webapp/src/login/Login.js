@@ -5,8 +5,8 @@ import styled from 'styled-components';
 import {CheckOutlined} from '@ant-design/icons';
 import axios from 'axios';
 import config from '../config/config';
-import cryptoFunction, { cryptotoSha512 } from '../common/crypto';
-
+import cryptoFunction, {base64DecodingFunc, cryptotoSha512} from '../common/crypto';
+import {saveStorageAuth, saveStorageJWTToken} from "../common/sessions";
 /**
  * StyledButton button의 style을 지정
  * @author jslee
@@ -51,10 +51,17 @@ function Login() {
     })
       .then(res =>{
         console.log("response", res);
+        if(res.data.accessToken !==undefined || res.data.accessToken !== null) {
+          saveStorageJWTToken(res.data.accessToken);
+          let decodingToken = base64DecodingFunc(res.data.accessToken);
+          console.log("decodingToken: ", decodingToken);
+          saveStorageAuth(decodingToken.iss);
+        }
         alert("로그인 성공!");
       })
       .catch(error => {
-        if(error.response.data.customError !== undefined || error.response.data.customError !== null) alert("로그인 실패: " + error.response.data.customError);
+        if(error == undefined || error.response == undefined || error.response.data == undefined) alert("로그인 실패: " + error);
+        else if(error.response.data.customError !== undefined || error.response.data.customError !== null) alert("로그인 실패: " + error.response.data.customError);
         else alert("로그인 실패: " + error);
       }
     )
