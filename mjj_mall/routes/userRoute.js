@@ -19,7 +19,6 @@ router.post('/sign-in',
 async(req,res)=>{
     let result = await loginTest.signIn(req.body,'user');
 
-    console.log(result);
     if(result.err == null){
         res.status(200).send(result);
     }else{
