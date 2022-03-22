@@ -45,7 +45,7 @@ module.exports = {
         }
         let result = new Object();
 
-        await mongodb.mongoSelectOne('member', options).then(function (selectResult) {
+        await mongodb.mongoSelectOne('member', options).then((selectResult) => {
             result.index = selectResult[0].index;
             result.memberBirth = selectResult[0].memberBirth;
         }).catch(function (err) { //mongoDB 에러시
@@ -53,5 +53,8 @@ module.exports = {
         });
 
         return result;
+    },
+    saveRefreshToken : async (refreshToken) => {
+        mongodb.mongoInsertOne('refreshToken', {token:refreshToken});
     }
 }

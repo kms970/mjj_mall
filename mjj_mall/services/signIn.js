@@ -16,7 +16,11 @@ module.exports = {
     signIn : async(jsonObj, codeName)=>{
         if(codeName == 'user'){
             let result = await userDB.signIn(jsonObj);
-            if(result.err == undefined) return jwt.sign(result,'user');
+            if(result.err == undefined) {
+                let token = await jwt.sign(result,'user');
+                userDB.saveRefreshToken(token.refreshToken);
+                return token;
+            }
             else return result;
         }else if(codeName == 'company'){
             return companyDB.signIn(jsonObj);
