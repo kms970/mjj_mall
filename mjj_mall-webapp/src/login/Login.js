@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {Button, Checkbox, Divider, Form, Input, PageHeader} from 'antd';
 import styled from 'styled-components';
@@ -7,6 +7,7 @@ import axios from 'axios';
 import config from '../config/config';
 import cryptoFunction, {base64DecodingFunc, cryptotoSha512} from '../common/crypto';
 import {saveStorageAuth, saveStorageJWTToken} from "../common/sessions";
+import SearchingId from "./searchingId";
 /**
  * StyledButton button의 style을 지정
  * @author jslee
@@ -34,6 +35,8 @@ const StyledButton = styled(Button)`
  * @author jslee
  */
 function Login() {
+
+  const [visible, setvisible] = useState(false);
   /**
    * 로그인을 요청하는 함수
    *
@@ -126,7 +129,7 @@ function Login() {
           }}
         >
           <span><Checkbox>Remember me</Checkbox></span>
-          <span><>아이디 찾기</> | <>비밀번호 찾기</></span>
+          <span><SearchingId visible={visible}></SearchingId> | <>비밀번호 찾기</></span>
         </Form.Item>
         <Form.Item
           wrapperCol={{
