@@ -56,5 +56,20 @@ module.exports = {
     },
     saveRefreshToken : async (refreshToken) => {
         mongodb.mongoInsertOne('refreshToken', {token:refreshToken});
+    },
+    findId : async(jsonObj)=>{
+        var options={
+            memberBirth: jsonObj.memberBirth,
+            memberEmail: jsonObj.memberEmail
+        }
+
+        let result = new Object();
+
+        await mongodb.mongoSelectOne('member',options).then((selectResult)=>{
+            result.memberId = selectResult.memberId;
+        }).catch((err)=>{
+            result.err = err;
+        });
+        return result;
     }
 }
