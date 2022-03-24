@@ -91,7 +91,7 @@ let mongoModule = {
                     var res_arr = new Array();
                     var result = database.db('mjj').collection(collectionName).find(queryObj, optionsObj).limit(1);
                     await result.forEach((doc) => { res_arr.push(doc) });
-                    resolve(res_arr);
+                    resolve(res_arr[0]);
                 }
             });
         });
