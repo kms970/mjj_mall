@@ -14,7 +14,7 @@ module.exports = {
 
         await mongodb.mongoSelectOne('member', {}, indexOptions).then(function (selectResult) {
             try {
-                jsonObj.index = selectResult[0].index;
+                jsonObj.index = selectResult.index;
                 jsonObj.index++;
             } catch (error) {
                 jsonObj.index = 1;
@@ -45,13 +45,31 @@ module.exports = {
         }
         let result = new Object();
 
-        await mongodb.mongoSelectOne('member', options).then(function (selectResult) {
-            result.index = selectResult[0].index;
-            result.memberBirth = selectResult[0].memberBirth;
+        await mongodb.mongoSelectOne('member', options).then((selectResult) => {
+            result.index = selectResult.index;
+            result.memberBirth = selectResult.memberBirth;
         }).catch(function (err) { //mongoDB 에러시
             result.err = err;
         });
 
+        return result;
+    },
+    saveRefreshToken : async (refreshToken) => {
+        mongodb.mongoInsertOne('refreshToken', {token:refreshToken});
+    },
+    findId : async(jsonObj)=>{
+        var options={
+            memberBirth: jsonObj.memberBirth,
+            memberEmail: jsonObj.memberEmail
+        }
+
+        let result = new Object();
+
+        await mongodb.mongoSelectOne('member',options).then((selectResult)=>{
+            result.memberId = selectResult.memberId;
+        }).catch((err)=>{
+            result.err = err;
+        });
         return result;
     }
 }
