@@ -1,5 +1,5 @@
 var MongoClient = require('mongodb').MongoClient;
-var url = 'mongodb://192.168.1.152:27017/mjj';
+var url = 'mongodb://58.227.231.54:50002/mjj';
 
 let mongoModule = {
     /**
@@ -138,6 +138,31 @@ let mongoModule = {
                         console.log(err);
                     } else {
                         console.log('Documents Insert');
+                    }
+                    database.close();
+                })
+            }
+        })
+    },
+    /**
+     * Update Data of Collection one
+     * 
+     * @param {String} collectionName 
+     * @param {Object} queryObj 
+     * @param {Object} jsonObj 
+     * 
+     * @author PJH
+     * @since 22-03-22
+     */
+    mongoUpdateOne : (collectionName, queryObj, jsonObj)=>{
+        MongoClient.connect(url,(err,database)=>{
+            if(err)console.log(err);
+            else {
+                 database.db('mjj').collection(collectionName).updateOne(queryObj,jsonObj,{},(err,res)=>{
+                    if(err){
+                        console.log(err);
+                    }else {
+                        console.log('1 Documnets Update');
                     }
                     database.close();
                 })
