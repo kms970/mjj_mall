@@ -4,7 +4,22 @@ let maskingFunc =
         if (typeof str == "undefined" || str == null || str == "") { return true; }
         else { return false; }
     },
-    /* ※ 이메일 마스킹
+    id : function(str){
+        let originStr = str;
+        let idStr = originStr.match(/[a-zA-Z0-9._-]+/gi);
+        let strLength;
+        if (this.checkNull(originStr) == true || this.checkNull(idStr) == true) {
+            return originStr;
+        }
+        else {
+            strLength = idStr.toString().length - 3;
+            // ex1) abcdefg12345@naver.com => ab**********@naver.com
+
+            return originStr.toString().replace(/(?<=.{3})./gi, "*");
+        }
+    },
+    /* 
+    ※ 이메일 마스킹
     ex1) 원본 데이터 : abcdefg12345@naver.com 변경 데이터 : ab**********@naver.com 
     ex2) 원본 데이터 : abcdefg12345@naver.com 변경 데이터 : ab**********@nav******
     */
@@ -107,3 +122,5 @@ let maskingFunc =
         } return maskingStr;
     }
 }
+
+module.exports = maskingFunc;
