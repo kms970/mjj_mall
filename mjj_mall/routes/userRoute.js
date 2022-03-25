@@ -5,6 +5,7 @@ const controller = require('../middlewares/user/userSignUp');
 const validation = require('../middlewares/user/userValidation');
 
 const loginTest = require('../services/signIn');
+const findId = require('../services/findId');
 
 router.post('/sign-up',
     validation.userValidation,
@@ -18,6 +19,17 @@ router.post('/sign-up',
 router.post('/sign-in', 
 async(req,res)=>{
     let result = await loginTest.signIn(req.body,'user');
+
+    if(result.err == null){
+        res.status(200).send(result);
+    }else{
+        res.status(401).send(result);
+    }
+});
+
+router.post('/findId', 
+async(req,res)=>{
+    let result = await findId.searchId(req.body,'user');
 
     if(result.err == null){
         res.status(200).send(result);

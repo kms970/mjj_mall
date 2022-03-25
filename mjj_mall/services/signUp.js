@@ -4,8 +4,8 @@ const companyDB = require('../models/company');
 module.exports = {
     /**
      * [codeName = collectionName]
-     * [user = member]
-     * [company = seller]
+     * [user]
+     * [company]
      * 
      * @param {Object} jsonObj 
      * @param {String} codeName 

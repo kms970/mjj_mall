@@ -14,32 +14,32 @@ module.exports = {
      * @returns 
      */
 
-    sign : async(payload, issuer) =>{
+    sign: async (payload, issuer) => {
         payload.iss = issuer;
         const result = new Object();
 
         try {
-            result.accessToken = jwt.sign(payload,secretKey,accessOptions);
-            result.refreshToken = jwt.sign(payload,secretKey,refreshOptions);
+            result.accessToken = jwt.sign(payload, secretKey, accessOptions);
+            result.refreshToken = jwt.sign(payload, secretKey, refreshOptions);
         } catch (error) {
             result.err = error;
         }
         return result;
     },
-    
-    verify: async (token)=>{
+
+    verify: async (token) => {
         let decoded;
-        try{
-            decoded = jwt.verify(token,secretKey);
-        }catch(err){
-            if(err.message==='jwt expired'){
+        try {
+            decoded = jwt.verify(token, secretKey);
+        } catch (err) {
+            if (err.message === 'jwt expired') {
                 console.log('expired token');
                 return TOKEN_EXPIRED;
-            }else if(err.message === 'invalid token'){
+            } else if (err.message === 'invalid token') {
                 console.log('invalid token');
                 console.log(TOKEN_INVALID);
                 return TOKEN_INVALID;
-            }else{
+            } else {
                 console.log('invalid token');
                 return TOKEN_INVALID;
             }
