@@ -181,7 +181,11 @@ function ItemRegistration() {
     },
   };
 
-  const categoryData = {
+  /**
+   * 카테고리
+   * @type {{midCategory: {브랜드여성: string[], 가전: string[], 전체: string[], 디지털: string[], 트렌드여성: string[]}, smallCategory: {TV: string[], 냉장고: string[], 전체: string[]}, majorCategory: {"가전/디지털": string[], 전체: string[], 트렌드패션: string[], 브랜드패션: string[]}, categoryGrp: string[]}}
+   */
+  /*const categoryData = {
     "categoryGrp": ["브랜드패션", "트렌드패션", "뷰티", "식품", "가전/디지털"],
     "majorCategory": {
       "전체":["전체"],
@@ -203,13 +207,14 @@ function ItemRegistration() {
     }
   }
 
+
+
   const [categoryGroup, setCategoryGroup] = useState(categoryData['categoryGrp']);
   const [categoryGrpSelect,setCategoryGrpSelect]= useState(categoryData['categoryGrp'][0]);
   const [MajorCategorySelect,setMajorCategorySelect]= useState(categoryData['majorCategory']['전체'][0]);
   const [majorCategoty, setMajorCategory] = useState(categoryData['majorCategory']['브랜드패션'])
-  const [middleCategoty, setMiddleCategory] = useState(categoryData['midCategory']['브랜드여성'])
-  
-  const majorCategoryHandler = (value) => {
+  const [middleCategoty, setMiddleCategory] = useState(categoryData['midCategory']['브랜드여성'])*/
+/*  const majorCategoryHandler = (value) => {
     if(categoryData['majorCategory'][value]==null||categoryData['majorCategory'][value]==undefined){
 
     }else {
@@ -227,6 +232,11 @@ function ItemRegistration() {
       setMiddleCategory(categoryData['midCategory'][value]);
       setMajorCategorySelect(value);
     }
+  }*/
+
+  const categoryData = {
+    'CategoryGrp': ['대분류 1', '대분류 2', '대분류 3'],
+
   }
 
   const onFinish = (values) => {
@@ -327,7 +337,7 @@ function ItemRegistration() {
           생각을 좀 해봐야 할 것 같음
           카테고리
         */}
-        <Select defaultValue={categoryGrpSelect} style={{ width: 150 }} onChange={majorCategoryHandler}>
+        {/*<Select defaultValue={categoryGrpSelect} style={{ width: 150 }} onChange={majorCategoryHandler}>
           {categoryGroup.map(categoryGrp => (
             <Option key={categoryGrp}>{categoryGrp}</Option>
           ))}
@@ -341,7 +351,10 @@ function ItemRegistration() {
           {middleCategoty.map(midCtgry => (
             <Option key={midCtgry}>{midCtgry}</Option>
           ))}
-        </Select>
+        </Select>*/}
+
+
+
       </Form>
     </div>
   )
