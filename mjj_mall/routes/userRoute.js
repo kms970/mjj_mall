@@ -30,10 +30,13 @@ async(req,res)=>{
 router.post('/findId', 
 async(req,res)=>{
     let result = await findId.searchId(req.body,'user');
-
-    if(result.resultId != null){
-        res.status(200).send(result);
-    }else{
+    try {
+        if(result.resultId){
+            res.status(200).send(result);
+        }else if(result.err){
+            res.status(401).send(result);
+        }
+    } catch (error) {
         res.status(401).send(result);
     }
 });
