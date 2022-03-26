@@ -1,18 +1,17 @@
 const userDB = require('../models/user');
+const maskingFunc = require('../customUtils/masking/masking');
 
 module.exports = {
-    searchId : async (jsonObj, codeName)=>{
-        console.log(jsonObj);
-        if(codeName == 'user'){
+    searchId: async (jsonObj, codeName) => {
+        if (codeName == 'user') {
             let result = await userDB.findId(jsonObj);
-            console.log(result);
-            if(result.err == undefined){
-                let str = result.memberId.substr(0,3)+result.memberId.substr(4,result.memberId.length).replaceAll(/^[A-Za-z0-9+]*$/g,'*');
-                console.log(str);
-            }else{
-                
+            if (result.memberId) {
+                let maskingStr = maskingFunc.id(result.memberId);
+                return { resultId: maskingStr };
+            } else if(result.err){
+                return { err: "Can't find ID" };
             }
-        }else if(codeName == 'company'){
+        } else if (codeName == 'company') {
 
         }
     }
