@@ -3,6 +3,7 @@ const router = express.Router();
 
 const controller = require('../middlewares/user/userSignUp');
 const validation = require('../middlewares/user/userValidation');
+const mongoTest = require('../customUtils/mongodbModule/mongoClientManager');
 
 const loginTest = require('../services/signIn');
 const findId = require('../services/findId');
@@ -24,6 +25,20 @@ async(req,res)=>{
         res.status(200).send(result);
     }else{
         res.status(401).send(result);
+    }
+});
+
+
+router.post('/test-url', async(req,res)=>{
+    var queryOptions = {
+        memberId: req.body.memberId
+    };
+    if(typeof req.body.memberId !=='string'){
+        return res.status(400).send({err: 'invalid memberId'});
+    }
+    else{
+        mongoTest.mongoFindOneAndUpdate('member',queryOptions,{$set : {memberId : 'test005'}});
+        return res.status(200).send({reponse : 'SUC'});
     }
 });
 
