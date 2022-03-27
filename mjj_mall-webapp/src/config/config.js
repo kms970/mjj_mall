@@ -8,5 +8,7 @@ export default {
   "serverPort": ":50001",
   "JoinCustomer": "/user/sign-up",
   "JoinProvider": "/company/sign-up",
-  "Login": "/user/sign-in"
+  "Login": "/user/sign-in",
+  "FindId": "/user/findId",
+
 };
