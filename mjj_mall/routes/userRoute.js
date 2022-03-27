@@ -6,6 +6,7 @@ const validation = require('../middlewares/user/userValidation');
 const mongoTest = require('../customUtils/mongodbModule/mongoClientManager');
 
 const loginTest = require('../services/signIn');
+const findId = require('../services/findId');
 
 router.post('/sign-up',
     validation.userValidation,
@@ -27,6 +28,7 @@ async(req,res)=>{
     }
 });
 
+
 router.post('/test-url', async(req,res)=>{
     var queryOptions = {
         memberId: req.body.memberId
@@ -39,5 +41,18 @@ router.post('/test-url', async(req,res)=>{
         return res.status(200).send({reponse : 'SUC'});
     }
 });
+
+router.post('/findId', 
+async(req,res)=>{
+    let result = await findId.searchId(req.body,'user');
+
+    if(result.err == null){
+        res.status(200).send(result);
+    }else{
+        res.status(401).send(result);
+    }
+});
+
+//router.post('/test-url', controller.testAndroidGet);
 
 module.exports = router;
