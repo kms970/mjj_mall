@@ -144,6 +144,30 @@ let mongoModule = {
             }
         })
     },
+    /**
+     * Update Data of Collection one
+     * 
+     * @param {String} collectionName 
+     * @param {Object} queryObj 
+     * @param {Object} jsonObj 
+     * 
+     * @author PJH
+     * @since 22-03-22
+     */
+    mongoFindOneAndUpdate : (collectionName, queryObj, jsonObj)=>{
+        MongoClient.connect(url,(err,database)=>{
+            if(err)console.log(err);
+            else {
+                 database.db('mjj').collection(collectionName).findOneAndUpdate(queryObj,jsonObj,{}).then(updateDocument=>{
+                     if(updateDocument.value!==null){
+                         console.log(`Successfully updated document : ${updateDocument}`);
+                     }else{
+                         console.log("No document matches the provided query.");
+                     }
+                 }).catch(err => console.log(`Failed to find and update document : ${err}`));
+            }
+        })
+    },
 }
 
 module.exports = mongoModule
