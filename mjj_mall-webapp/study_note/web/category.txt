@@ -1,0 +1,11 @@
+# react 카테고리 만드는 방법
+
+검색 키워드: react category filter
+참고 사이트: https://contactmentor.com/filter-list-by-category-react-js/
+
+
+1. object Array로 category 데이터를 생성/받음
+ - 카테고리 이름, index number, parent_index, 페이지
+2. 배열을 필터로 돌려서, 조건에 맞는 데이터 리스트를 가져옴
+3. select option을 가져온 데이터 리스트로 세팅을 해준다.
+
