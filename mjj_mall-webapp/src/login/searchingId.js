@@ -9,6 +9,15 @@ function SearchingId(props) {
   const [isModalVisible, setIsModalVisible] = useState(visible);
   const [isMemeberId, setMemberId] = useState('');
 
+  const layout = {
+    labelCol: {
+      span: 10,
+    },
+    wrapperCol: {
+      span: 4
+    }
+  };
+
   /**
    *
    */
@@ -39,11 +48,10 @@ function SearchingId(props) {
 
   const handleCancel = () => {
     setIsModalVisible(false);
+    setCheckId(false);
+    setMemberId('');
   };
 
-  // const onFinishFunction = (event) => {
-  //   console.log("event는?", event);
-  // }
 
   return (
     <div style={{display: "inline-block"}}>
@@ -96,7 +104,8 @@ function SearchingId(props) {
           </Form.Item>
           {checkId ? <div style={{width:'400px', border:'1px solid'}}><span >찾으신 아이디: </span><span >{isMemeberId}</span></div>:null}
           <Form.Item>
-            <Button htmlType="submit">아이디 찾기</Button>
+            <Button htmlType="submit" type="primary">아이디 찾기</Button>
+            <Button onClick={handleCancel}>닫기</Button>
           </Form.Item>
         </Form>
       </Modal>
