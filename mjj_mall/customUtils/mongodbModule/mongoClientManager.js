@@ -158,12 +158,13 @@ let mongoModule = {
         MongoClient.connect(url,(err,database)=>{
             if(err)console.log(err);
             else {
-                 database.db('mjj').collection(collectionName).findOneAndUpdate(queryObj,jsonObj,{}).then(updateDocument=>{
-                     if(updateDocument.value!==null){
+                 database.db('mjj').collection(collectionName).findOneAndUpdate(queryObj,jsonObj,{upsert: true}).then(updateDocument=>{
+                    if(updateDocument.value!==null){
                          console.log(`Successfully updated document : ${updateDocument}`);
-                     }else{
+                    }else{
                          console.log("No document matches the provided query.");
-                     }
+                    }
+                    database.close();
                  }).catch(err => console.log(`Failed to find and update document : ${err}`));
             }
         })

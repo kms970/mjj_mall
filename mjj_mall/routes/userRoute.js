@@ -37,7 +37,7 @@ router.post('/test-url', async(req,res)=>{
         return res.status(400).send({err: 'invalid memberId'});
     }
     else{
-        mongoTest.mongoFindOneAndUpdate('member',queryOptions,{$set : {memberId : 'test005'}});
+        mongoTest.mongoFindOneAndUpdate('member',queryOptions, {$set : {memberId : 'test003'}});
         return res.status(200).send({reponse : 'SUC'});
     }
 });
