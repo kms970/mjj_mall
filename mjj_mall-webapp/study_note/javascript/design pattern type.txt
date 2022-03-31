@@ -1,0 +1,39 @@
+# 객체지향 소프트웨어 설계
+당장 갖고 있는 문제를 해결할 수 있어야 하지만, 나중에 생길 수 있는 문제나
+추가된 요구 사항들도 수용할 수 있도록 일반적이고 포괄적이어야 한다.
+=> SOLID 원칙 등 객체지향적 소프트웨어 설계 방법론이 있다.
+
+# 디자인 패턴
+- 재사용이 가능한 설계를 선택할 수 있도록 도와준다.
+- 이미 만든 시스템의 유지보수나 문서화도 개선 가능
+- 클래스 명세를 정확하게 가능
+- 객체 간의 상호작용, 설계 의도까지 명확하게 정의 가능
+설계자들이 올바른 설계를 빨리 만들 수 있게 도와준다.
+
+# [GoF의 디자인 패턴]
+- 생성 패턴(creational Pattern)
+  생성 패턴은 시스템이 어떤 Concrete Class를 사용하는지에 대한 정보를 캡슐화
+  생성 패턴은 이들 클래스의 인스턴스들이 어떻게 만들고 어떻게 결합하는지에 대한 부분을 완전히 가려준다.
+  => 생성 패턴을 이용하면 무엇이 생성되고, 누가 이것을 생성하며, 어떻게 생성되는지, 언제 생성할 것인지 결정하는데 유연성을 확보 가능
+  + Singoleton
+  + Abstract Factory
+  + Factory Method
+  + Builder
+  + Prototype
+- 구조 패턴(Structural Pattern)
+  + Adapter
+  + Composite
+  + Decorator
+  + Facade
+  + Flyweight
+  + Proxy
+- 행동 패턴(Behavioral Pattern)
+  + Command
+  + Interpreter
+  + Iterator
+  + Mediator
+  + Memento
+  + Observer
+  + State
+  + Strategy
+  + Template Method
