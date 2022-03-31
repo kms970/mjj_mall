@@ -18,7 +18,8 @@ module.exports = {
             let result = await userDB.signIn(jsonObj);
             if(result.err == undefined) {
                 let token = await jwt.sign(result,'user');
-                userDB.saveRefreshToken(token.refreshToken);
+                //userDB.saveRefreshToken(token.refreshToken);
+                //todo : saveRefreshToken 수정 필요 upsert 옵션
                 return token;
             }
             else return result;
