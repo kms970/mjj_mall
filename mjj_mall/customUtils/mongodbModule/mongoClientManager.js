@@ -154,9 +154,9 @@ let mongoModule = {
      * @author PJH
      * @since 22-03-22
      */
-    mongoFindOneAndUpdate : (collectionName, queryObj, jsonObj)=>{
-        MongoClient.connect(url,(err,database)=>{
-            if(err)console.log(err);
+    mongoFindOneAndUpdate: (collectionName, queryObj, jsonObj) => {
+        MongoClient.connect(url, (err, database) => {
+            if (err) console.log(err);
             else {
                  database.db('mjj').collection(collectionName).findOneAndUpdate(queryObj,jsonObj,{upsert: true}).then(updateDocument=>{
                     if(updateDocument.value!==null){
@@ -166,6 +166,19 @@ let mongoModule = {
                     }
                     database.close();
                  }).catch(err => console.log(`Failed to find and update document : ${err}`));
+//                 /*
+//                 todo : options에 {}가 아닌 필요 옵션 넣을수있게
+//                 ex : {new: true, upsert: true}
+//                 필요이유 : SignIn 에서 값이 존재 하지 않을경우 Insert 할수있는 옵션 필요
+//                 */
+//                 database.db('mjj').collection(collectionName).findOneAndUpdate(queryObj, jsonObj, {}).then(updateDocument => {
+//                     if (updateDocument.value !== null) {
+//                         console.log(`Successfully updated document : ${updateDocument}`);
+//                         //todo: return 값 필요
+//                     } else {
+//                         console.log("No document matches the provided query.");
+//                     }
+//                 }).catch(err => console.log(`Failed to find and update document : ${err}`));
             }
         })
     },

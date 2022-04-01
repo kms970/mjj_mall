@@ -181,57 +181,30 @@ function ItemRegistration() {
     },
   };
 
-  const categoryData = {
-    "categoryGrp": ["브랜드패션", "트렌드패션", "뷰티", "식품", "가전/디지털"],
-    "majorCategory": {
-      "전체":["전체"],
-      "브랜드패션": ["브랜드여성", "브랜드남성", "브랜드키즈", "브랜드공용"],
-      "트렌드패션": ["트렌드여성", "트렌드남성", "트렌드키즈", "트렌드공용"],
-      "가전/디지털": ["가전", "컴퓨터", "디지털"]
-    },
-    "midCategory": {
-      "전체":["전체"],
-      "브랜드여성": ["브랜드/여성/상의","브랜드/여성/하의","브랜드/여성/셔츠","브랜드/여성/원피스","브랜드/여성/속옷"],
-      "트렌드여성": ["트렌드/여성/상의","트렌드/여성/하의","트렌드/여성/셔츠","트렌드/여성/원피스","트렌드/여성/속옷"],
-      "가전": ["TV","냉장고","세탁기/건조기","주방가전","생활가전", "렌탈/가입상품"],
-      "디지털": ["휴대폰","휴대폰 악세서리","스마트기기","카메라/주변기기","태블릿","게임"]
-    },
-    "smallCategory":{
-      "전체":["전체"],
-      "TV": ["106cm 이하(~42인치)","107~137cm(43인치~54인치)","TV 주변기기"],
-      "냉장고":["4도어","양문형"]
-    }
-  }
-
-  const [categoryGroup, setCategoryGroup] = useState(categoryData['categoryGrp']);
-  const [categoryGrpSelect,setCategoryGrpSelect]= useState(categoryData['categoryGrp'][0]);
-  const [MajorCategorySelect,setMajorCategorySelect]= useState(categoryData['majorCategory']['전체'][0]);
-  const [majorCategoty, setMajorCategory] = useState(categoryData['majorCategory']['브랜드패션'])
-  const [middleCategoty, setMiddleCategory] = useState(categoryData['midCategory']['브랜드여성'])
-  
-  const majorCategoryHandler = (value) => {
-    if(categoryData['majorCategory'][value]==null||categoryData['majorCategory'][value]==undefined){
-
-    }else {
-      console.log("value", value);
-      setMajorCategory(categoryData['majorCategory'][value]);
-      setCategoryGrpSelect(value);
-    }
-  }
-  
-  const middleCategoryHandler = (value) => {
-    if(categoryData['midCategory'][value]==null||categoryData['midCategory'][value] == undefined) {
-
-    } else {
-      console.log("value", value);
-      setMiddleCategory(categoryData['midCategory'][value]);
-      setMajorCategorySelect(value);
-    }
-  }
-
+  /**
+   * 상품 등록 버튼을 클릭시 동작할 functions
+   *
+   * @param values 상품 등록을 위해서 등록한 value
+   * @author jslee
+   * @since 2022-03-30
+   */
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
   }
+
+  const categoryJson = [
+    { name: "가전/디지털", category:'electronicsNDigital', index: 1, parentIndex: null},
+    { name: "가전", category:'electronics', index: 101, parentIndex: 1},
+    { name: "디지털", category:'digital', index: 102, parentIndex: 1},
+    { name: "컴퓨터", category:'computer', index: 103, parentIndex: 1},
+    { name: "TV", category:'tv', index: 10101, parentIndex: 101},
+    { name: "냉장고", category:'refrigerator', index: 10102, parentIndex: 101},
+    { name: "세탁기/건조기", category:'washingNDryingMachine', index: 10103, parentIndex: 101},
+    { name: "휴대폰", category:'phone', index: 10201, parentIndex: 102},
+    { name: "노트북", category:'notebook', index: 10301, parentIndex: 103},
+    { name: "데스크톱", category:'desktop', index: 10302, parentIndex: 103},
+    { name: "모니터", category:'monitor', index: 10303, parentIndex: 103},
+  ]
 
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
@@ -323,25 +296,6 @@ function ItemRegistration() {
           </Button>
         </Form.Item>
 
-        {/*
-          생각을 좀 해봐야 할 것 같음
-          카테고리
-        */}
-        <Select defaultValue={categoryGrpSelect} style={{ width: 150 }} onChange={majorCategoryHandler}>
-          {categoryGroup.map(categoryGrp => (
-            <Option key={categoryGrp}>{categoryGrp}</Option>
-          ))}
-        </Select>
-        <Select style={{ width: 150 }} value={MajorCategorySelect} onChange={middleCategoryHandler}>
-          {majorCategoty.map(majorCtgry => (
-            <Option key={majorCtgry}>{majorCtgry}</Option>
-          ))}
-        </Select>
-        <Select style={{ width: 200 }} value={middleCategoty[0]}>
-          {middleCategoty.map(midCtgry => (
-            <Option key={midCtgry}>{midCtgry}</Option>
-          ))}
-        </Select>
       </Form>
     </div>
   )
