@@ -1,6 +1,5 @@
 var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://58.227.231.54:50002/mjj';
-
 let mongoModule = {
     /**
      * choose collection, find all data
@@ -154,23 +153,18 @@ let mongoModule = {
      * @author PJH
      * @since 22-03-22
      */
-    mongoFindOneAndUpdate: (collectionName, queryObj, jsonObj) => {
+    mongoFindOneAndUpdate: (collectionName, queryObj, jsonObj, upsertOption) => {
         MongoClient.connect(url, (err, database) => {
             if (err) console.log(err);
             else {
-                /*
-                todo : options에 {}가 아닌 필요 옵션 넣을수있게
-                ex : {new: true, upsert: true}
-                필요이유 : SignIn 에서 값이 존재 하지 않을경우 Insert 할수있는 옵션 필요
-                */
-                database.db('mjj').collection(collectionName).findOneAndUpdate(queryObj, jsonObj, {}).then(updateDocument => {
-                    if (updateDocument.value !== null) {
-                        console.log(`Successfully updated document : ${updateDocument}`);
-                        //todo: return 값 필요
-                    } else {
-                        console.log("No document matches the provided query.");
+                 database.db('mjj').collection(collectionName).findOneAndUpdate(queryObj,jsonObj,upsertOption).then(updateDocument=>{
+                    if(updateDocument.value!==null){
+                         console.log(`Successfully updated document : ${updateDocument}`);
+                    }else{
+                         console.log("No document matches the provided query. And update!");
                     }
-                }).catch(err => console.log(`Failed to find and update document : ${err}`));
+                    database.close();
+                 }).catch(err => console.log(`Failed to find and update document : ${err}`));
             }
         })
     },
