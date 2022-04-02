@@ -153,11 +153,11 @@ let mongoModule = {
      * @author PJH
      * @since 22-03-22
      */
-    mongoFindOneAndUpdate: (collectionName, queryObj, jsonObj) => {
+    mongoFindOneAndUpdate: (collectionName, queryObj, jsonObj, upsertOption) => {
         MongoClient.connect(url, (err, database) => {
             if (err) console.log(err);
             else {
-                 database.db('mjj').collection(collectionName).findOneAndUpdate(queryObj,jsonObj,{new:true,upsert: true}).then(updateDocument=>{
+                 database.db('mjj').collection(collectionName).findOneAndUpdate(queryObj,jsonObj,upsertOption).then(updateDocument=>{
                     if(updateDocument.value!==null){
                          console.log(`Successfully updated document : ${updateDocument}`);
                     }else{
@@ -165,11 +165,6 @@ let mongoModule = {
                     }
                     database.close();
                  }).catch(err => console.log(`Failed to find and update document : ${err}`));
-//                 /*
-//                 todo : options에 {}가 아닌 필요 옵션 넣을수있게
-//                 ex : {new: true, upsert: true}
-//                 필요이유 : SignIn 에서 값이 존재 하지 않을경우 Insert 할수있는 옵션 필요
-//                 */
             }
         })
     },

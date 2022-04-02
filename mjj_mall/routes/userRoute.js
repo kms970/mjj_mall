@@ -33,12 +33,15 @@ router.post('/test-url', async(req,res)=>{
     var queryOptions = {
         memberId: req.body.memberId
     };
-
+    let upsertOption = {
+        new : false,
+        upsert :false,
+    };
     if(typeof req.body.memberId !=='string'){
         return res.status(400).send({err: 'invalid memberId'});
     }
     else{
-        mongoTest.mongoFindOneAndUpdate('member',queryOptions, {$set : {memberId : 'test002'}});
+        mongoTest.mongoFindOneAndUpdate('member',queryOptions, {$set : {memberId : 'test002'}},upsertOption);
         return res.status(200).send({reponse : 'SUC'});
     }
 });
