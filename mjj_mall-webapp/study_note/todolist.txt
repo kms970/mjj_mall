@@ -1,0 +1,67 @@
+# Todo List
+
+1. 카테고리 구현 필요
+2. 로그인 후 jwt_token관리 필요
+3. 테스트 폴더에 테스트 API 요청 버튼 생성
+  + access token을 이용한 API 요청 테스트용
+
+
+------------------------------------------------
+
+# 공부 해야할 것 목록
+1. react function component
+2. react hooks
+- State Hook
+- Effect Hook
+- Context Hook
+- 추가 Hook
+  + useReducer
+  + useCallback
+  + useMemo
+  + useRef
+  + useImperativeHandle
+  + useLayoutEffect
+  + useDebugValue
+
+3. react 상태 관리 라이브러리
+- react + redux
+  + 단점
+    * 높은 러닝커브
+    * 큰 보일러플레이트 코드
+  + 장점
+    * 하나의 스토어, 하나의 객체 트리를 가지기 때문에 디버깅에 용이
+    * 모든 상태의 변화가 하나의 store에 집중되어 있고 단방향으로 일어나기 때문에 예측 가능한 결과
+    * 리듀서는 순수함수로써 상태를 변경하는 것이 아닌 새로운 상태를 반환
+- react + recoil
+  + 장점
+    * 보일러플레이트가 없어 리액트 지역 상태로서 단순한 get/set 인터페이스로 상태를 공유 가능
+    * 동시성 모드와 양립할 수 있는 가능성이 있음
+    * 상태를 분산적으로 둘 수 있기 때문에 코드 스플리팅이 가능
+  + 단점
+    * 버전이 낮아 안정성의 측면에서 좋지 않음
+    * devTool이 아직 미흡
+      -> 큰 규모의 프로젝트에서는 도입하기 힘듬
+- react + mobx
+  + 장점
+    * 리덕스에 비해 다루기 쉬운 라이브러리
+  + 단점
+    * store가 여러개가 될수 있음
+      -> 분리가 용이해 편리하지만 상태 변겅시 다수의 스토어가 영향을 받을 수 있음
+    * 스토어의 데이터를 액션의 발행 없이 업데이트 가능
+      -> 구현이 쉽고 용이하지만 테스트나 유지보수 측면에서는 문제를 일으킬 수 있음
+- react + Context API
+  정적인 데이터 위주로 처리하거나 업데이트가 빈번하지 않을 때 적합
+  + 장점
+    * 리액트가 자체적으로 가지고 있음
+  + 단점
+    * 렌더링 최적화에 있어서 아쉬움
+    * 빈번하고 복잡한 업데이트를 처리할 때 비효율적
+- react + Apollo/ useSWR / react-query
+  + 쿼리를 통한 상태 관리
+- 필수로 공부 해야 할 것
+  + react + redux
+  + react + recoil/mobx/context API
+
+
+
+
