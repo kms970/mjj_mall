@@ -54,8 +54,19 @@ module.exports = {
 
         return result;
     },
-    saveRefreshToken : async (refreshToken) => {
-        mongodb.mongoInsertOne('refreshToken', {token:refreshToken});
+    saveRefreshToken : async (refreshToken,jsonObj) => {
+        let queryOptions = {
+            index: jsonObj.index,
+            memberBirth: jsonObj.memberBirth
+        };
+
+        jsonObj.token = refreshToken;
+
+        let upsertOption = {
+            upsert: true,
+            new: false
+        }
+        mongodb.mongoFindOneAndUpdate('refreshToken',queryOptions,{$set: jsonObj},upsertOption);
     },
     findId : async(jsonObj)=>{
         var options={
