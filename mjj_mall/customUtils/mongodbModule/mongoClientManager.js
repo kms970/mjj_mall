@@ -1,6 +1,5 @@
 var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://58.227.231.54:50002/mjj';
-
 let mongoModule = {
     /**
      * choose collection, find all data
@@ -158,11 +157,11 @@ let mongoModule = {
         MongoClient.connect(url, (err, database) => {
             if (err) console.log(err);
             else {
-                 database.db('mjj').collection(collectionName).findOneAndUpdate(queryObj,jsonObj,{upsert: true}).then(updateDocument=>{
+                 database.db('mjj').collection(collectionName).findOneAndUpdate(queryObj,jsonObj,{new:true,upsert: true}).then(updateDocument=>{
                     if(updateDocument.value!==null){
                          console.log(`Successfully updated document : ${updateDocument}`);
                     }else{
-                         console.log("No document matches the provided query.");
+                         console.log("No document matches the provided query. And update!");
                     }
                     database.close();
                  }).catch(err => console.log(`Failed to find and update document : ${err}`));
@@ -171,14 +170,6 @@ let mongoModule = {
 //                 ex : {new: true, upsert: true}
 //                 필요이유 : SignIn 에서 값이 존재 하지 않을경우 Insert 할수있는 옵션 필요
 //                 */
-//                 database.db('mjj').collection(collectionName).findOneAndUpdate(queryObj, jsonObj, {}).then(updateDocument => {
-//                     if (updateDocument.value !== null) {
-//                         console.log(`Successfully updated document : ${updateDocument}`);
-//                         //todo: return 값 필요
-//                     } else {
-//                         console.log("No document matches the provided query.");
-//                     }
-//                 }).catch(err => console.log(`Failed to find and update document : ${err}`));
             }
         })
     },
