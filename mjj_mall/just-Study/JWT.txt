@@ -1,0 +1,21 @@
+https://velog.io/@shrup5/JWT-%ED%86%A0%ED%81%B0%EC%9D%B4%EB%9E%80
+
+시나리오
+
+1. 로그인을 하면 Access Token과 Refresh Token을 모두 발급한다.
+
+이때, Refresh Token만 서버측의 DB에 저장하며 Refresh Token과 Access Token을 쿠키에 저장한다.
+
+ 
+
+2. 사용자가 인증이 필요한 API에 접근하고자 하면, 가장 먼저 토큰을 검사하는 미들웨어를 검사한다.
+
+이때, 토큰을 검사함과 동시에 각 경우에 대해서 토큰의 유효기간을 확인하여 재발급 여부를 결정한다.
+
+case1: access token과 refresh token 모두가 만료된 경우 -> 에러 발생
+case2: access token은 만료됐지만, refresh token은 유효한 경우 ->  access token 재발급
+case3: access token은 유효하지만, refresh token은 만료된 경우 ->  refresh token 재발급
+case4: accesss token과 refresh token 모두가 유효한 경우 -> 다음 미들웨어로
+3. 로그아웃을 하면 Access Token과 Refresh Token을 모두 만료시킨다.
+
+-> https://cotak.tistory.com/102
