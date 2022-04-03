@@ -1,6 +1,12 @@
 const mongodb = require("../customUtils/mongodbModule/mongoClientManager");
 
 module.exports = {
+    /**
+     * signUp user
+     * 
+     * @param {Object} jsonObj 
+     * @returns 
+     */
     signUp: async (jsonObj) => {
         var indexOptions = {
             'sort': ['index', 'desc']
@@ -38,6 +44,13 @@ module.exports = {
 
         return result;
     },
+
+    /**
+     * signIn user
+     * 
+     * @param {Object} jsonObj 
+     * @returns 
+     */
     signIn: async (jsonObj) => {
         var options = {
             memberId: jsonObj.memberId,
@@ -54,9 +67,32 @@ module.exports = {
 
         return result;
     },
-    saveRefreshToken : async (refreshToken) => {
-        mongodb.mongoInsertOne('refreshToken', {token:refreshToken});
+    /**
+     * save refreshToken and data
+     * 
+     * @param {String} refreshToken -> refreshToken
+     * @param {Object} jsonObj -> data
+     */
+    saveRefreshToken : async (refreshToken,jsonObj) => {
+        let queryOptions = {
+            index: jsonObj.index,
+            memberBirth: jsonObj.memberBirth
+        };
+
+        jsonObj.token = refreshToken;
+
+        let upsertOption = {
+            upsert: true,
+            new: false
+        }
+        mongodb.mongoFindOneAndUpdate('refreshToken',queryOptions,{$set: jsonObj},upsertOption);
     },
+    /**
+     * find Id
+     * 
+     * @param {Object} jsonObj 
+     * @returns 
+     */
     findId : async(jsonObj)=>{
         var options={
             memberBirth: jsonObj.memberBirth,
