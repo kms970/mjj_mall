@@ -10,5 +10,6 @@ export default {
   "JoinProvider": "/company/sign-up",
   "Login": "/user/sign-in",
   "FindId": "/user/findId",
-
-};
+  "Test": "/user/test-login",
+  
+}

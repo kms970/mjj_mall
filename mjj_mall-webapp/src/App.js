@@ -10,6 +10,7 @@ import JoinComplete from "./login/join/JoinComplete";
 import Header from "./common/header";
 import OrderConfirmation from "./orderConfirmation/orderConfirmation";
 import ItemRegistration from "./provider/item/itemRegistration";
+import TestFunction from './test/test';
 function App() {
   return (
     <div>
@@ -25,6 +26,7 @@ function App() {
           <Route path="/join/complete" element={<JoinComplete />} />
           <Route path="/order/confirmation" element={<OrderConfirmation />} />
           <Route path="/provider/item/Registration" element={<ItemRegistration/>}/>
+          <Route path="/test/test" element={<TestFunction/>} />
         </Routes>
       </BrowserRouter>
     </div>
