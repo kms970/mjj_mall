@@ -290,12 +290,18 @@ function ItemRegistration() {
           <Input />
         </Form.Item>
 
+				{/* 카테고리 */}
+				<Form.Item name="" label="카테고리">
+					<Select>
+						<Option value="">대분류</Option>
+					</Select>
+				</Form.Item>
+
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
             상품 등록
           </Button>
         </Form.Item>
-
       </Form>
     </div>
   )

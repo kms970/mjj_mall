@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Navigate, Router, useNavigate} from 'react-router-dom';
 import {Button, Checkbox, Divider, Form, Input, PageHeader} from 'antd';
 import styled from 'styled-components';
 import {CheckOutlined} from '@ant-design/icons';
@@ -37,6 +37,7 @@ const StyledButton = styled(Button)`
 function Login() {
 
   const [visible, setvisible] = useState(false);
+  const navigate = useNavigate();
   /**
    * 로그인을 요청하는 함수
    *
@@ -61,6 +62,7 @@ function Login() {
           saveStorageAuth(decodingToken.iss);
         }
         alert("로그인 성공!");
+        navigate('/');
       })
       .catch(error => {
         if(error == undefined || error.response == undefined || error.response.data == undefined) alert("로그인 실패: " + error);
