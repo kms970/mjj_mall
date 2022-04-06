@@ -4,6 +4,12 @@ let maskingFunc =
         if (typeof str == "undefined" || str == null || str == "") { return true; }
         else { return false; }
     },
+    /**
+     * masking ID
+     * 
+     * @param {String} str 
+     * @returns 
+     */
     id : function(str){
         let originStr = str;
         let idStr = originStr.match(/[a-zA-Z0-9._-]+/gi);
