@@ -6,12 +6,21 @@ module.exports = auth;
 * 
 * @param {String} refreshToken -> refreshToken
 * @param {Object} jsonObj -> data
+* @param {String} codeName
+*
 */
-auth.saveRefreshToken = async (refreshToken, jsonObj, collectionName) => {
-    let queryOptions = {
-        index: jsonObj.index,
-        memberBirth: jsonObj.memberBirth
-    };
+auth.saveRefreshToken = async (refreshToken, jsonObj, codeName) => {
+    if(codeName == 'user'){
+        var queryOptions = {
+            index: jsonObj.index,
+            memberBirth: jsonObj.memberBirth
+        };
+    }else if(codeName == 'comapany'){
+        //todo : Make saveRefreshToken option
+    }else{
+        return "FAILED";
+    }
+
 
     jsonObj.token = refreshToken;
 

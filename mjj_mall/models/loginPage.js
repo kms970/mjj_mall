@@ -6,29 +6,32 @@ module.exports = loginPage;
  * signUp user
  * 
  * @param {Object} jsonObj 
- * @param {String} collectionName
+ * @param {String} codeName
  * 
  * @returns 
  */
-loginPage.signUp = async (jsonObj,collectionName) => {
+loginPage.signUp = async (jsonObj,codeName) => {
 
     let result = new Object();
+    let collectionName = '';
 
     var indexOptions = {
         'sort': ['index', 'desc']
     };
 
-    if(collectionName == 'member'){
+    if(codeName == 'user'){
         var queryOptions = {
             memberId: jsonObj.memberId
         };
-    }else if(collectionName == 'company'){
+        collectionName = 'member';
+    }else if(codeName == 'company'){
         var queryOptions = {
             companyId: jsonObj.companyId
         };
+        collectionName = 'seller';
     }else {
         result.response = "FAILED";
-        result.error = "CollectionName is not exist!";
+        result.error = "codeName is not exist!";
         return result;
     }
 
@@ -63,34 +66,37 @@ loginPage.signUp = async (jsonObj,collectionName) => {
  * signIn user
  * 
  * @param {Object} jsonObj 
- * @param {String} collectionName
+ * @param {String} codeName
  * 
  * @returns 
  */
-loginPage.signIn = async (jsonObj,collectionName) => {
+loginPage.signIn = async (jsonObj,codeName) => {
 
     let result = new Object();
+    let collectionName = '';
 
-    if(collectionName == 'member'){
+    if(codeName == 'user'){
         var options = {
             memberId: jsonObj.memberId,
             memberPwd: jsonObj.memberPwd
         }
-    }else if(collectionName == 'company'){
+        collectionName = 'member';
+    }else if(codeName == 'company'){
         var options = {
             //todo Make signIn option for company
         };
+        collectionName = 'seller';
     }else {
         result.response = "FAILED";
-        result.error = "CollectionName is not exist!";
+        result.error = "codeName is not exist!";
         return result;
     }
 
     await mongodb.mongoSelectOne(collectionName, options).then((selectResult) => {
         result.index = selectResult.index;
-        if(collectionName == 'member'){
+        if(codeName == 'user'){
             result.memberBirth = selectResult.memberBirth;
-        }else if(collectionName == 'company'){
+        }else if(codeName == 'company'){
             //todo Make signIn result for company
         }
         
@@ -104,33 +110,36 @@ loginPage.signIn = async (jsonObj,collectionName) => {
  * find Id
  * 
  * @param {Object} jsonObj 
- * @param {String} collectionName
+ * @param {String} codeName
  * 
  * @returns 
  */
-loginPage.findId = async (jsonObj,collectionName) => {
+loginPage.findId = async (jsonObj,codeName) => {
     
     let result = new Object();
+    let collectionName = '';
     
-    if(collectionName == 'member'){
+    if(codeName == 'user'){
         var options = {
             memberBirth: jsonObj.memberBirth,
             memberEmail: jsonObj.memberEmail
         }
-    }else if(collectionName == 'company'){
+        collectionName = 'member';
+    }else if(codeName == 'company'){
         var options = {
            //todo : Make option for company
         }
+        collectionName = 'seller';
     }else {
         result.response = "FAILED";
-        result.error = "CollectionName is not exist!";
+        result.error = "codeName is not exist!";
         return result;
     }
 
     await mongodb.mongoSelectOne(collectionName, options).then((selectResult) => {
-        if(collectionName == 'member'){
+        if(codeName == 'user'){
             result.memberId = selectResult.memberId;
-        }else if(collectionName == 'company'){
+        }else if(codeName == 'company'){
             //todo Make signIn result for company
         }
     }).catch((err) => {
