@@ -3,7 +3,10 @@
 1. 카테고리 구현 필요
 2. 로그인 후 jwt_token관리 필요 - jwt_refresh_token관리
 3. React Redux 적용
-4. 
+4. carousel - 슬라이드 배너
+- slick slider
+5. 이벤트 alert
+- sweetalert
 
 
 
