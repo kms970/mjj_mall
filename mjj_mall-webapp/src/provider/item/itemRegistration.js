@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React,{ useState, useEffect } from 'react';
 import {Divider, PageHeader, Input, Select, Button, Form } from "antd";
 
 
@@ -207,10 +207,16 @@ function ItemRegistration() {
   ]
   const [middleCategory, setMiddleCategory] = useState([]);
 
-  const changeMajorCategory = (event) => {
+  useEffect(()=>{
+    console.log("eeee");
+    console.log("eeeeeeeeeeee filterValue", middleCategory);
+  },[middleCategory]);
+
+  const changeMajorCategory = async(event) => {
     console.log("event", event);
-    let valueCategory = categoryJson.filter(it => it.parentIndex == event);
+    let valueCategory = await categoryJson.filter(it => it.parentIndex == event);
     console.log("valueCate",valueCategory);
+
     setMiddleCategory(valueCategory);
     console.log("filterValue", middleCategory);
   }
@@ -300,12 +306,19 @@ function ItemRegistration() {
         </Form.Item>
 
 				{/* 카테고리 */}
-				<Form.Item name="" label="카테고리">
+				<Form.Item name="" label="대분류">
 					<Select onChange={changeMajorCategory}>
 						<Option value="">대분류</Option>
             <Option value="1">가전/디지털</Option>
 					</Select>
 				</Form.Item>
+
+        <Form.Item name="" label="중분류">
+          <Select>
+              {middleCategory.map(res=><Option value={res.index}>{res.name}</Option>)}
+          </Select>
+				</Form.Item>
+      
 
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
