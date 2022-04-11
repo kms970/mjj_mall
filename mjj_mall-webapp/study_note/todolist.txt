@@ -1,16 +1,29 @@
 # Todo List
 
 1. 카테고리 구현 필요
-2. 로그인 후 jwt_token관리 필요
-3. 테스트 폴더에 테스트 API 요청 버튼 생성
+2. 로그인 후 jwt_token관리 필요 - jwt_refresh_token관리
+3. React Redux 적용
+4. carousel - 슬라이드 배너
+- slick slider
+5. 이벤트 alert
+- sweetalert
+
+
+
+
+
+
+# 완료 항목
+1. 테스트 폴더에 테스트 API 요청 버튼 생성
   + access token을 이용한 API 요청 테스트용
 
 
 ------------------------------------------------
 
 # 공부 해야할 것 목록
-1. react function component
-2. react hooks
+1. webpack, babel 공부
+2. react function component
+3. react hooks
 - State Hook
 - Effect Hook
 - Context Hook
@@ -23,7 +36,7 @@
   + useLayoutEffect
   + useDebugValue
 
-3. react 상태 관리 라이브러리
+4. react 상태 관리 라이브러리
 - react + redux
   + 단점
     * 높은 러닝커브

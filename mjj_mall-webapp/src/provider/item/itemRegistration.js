@@ -205,6 +205,15 @@ function ItemRegistration() {
     { name: "데스크톱", category:'desktop', index: 10302, parentIndex: 103},
     { name: "모니터", category:'monitor', index: 10303, parentIndex: 103},
   ]
+  const [middleCategory, setMiddleCategory] = useState([]);
+
+  const changeMajorCategory = (event) => {
+    console.log("event", event);
+    let valueCategory = categoryJson.filter(it => it.parentIndex == event);
+    console.log("valueCate",valueCategory);
+    setMiddleCategory(valueCategory);
+    console.log("filterValue", middleCategory);
+  }
 
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
@@ -292,8 +301,9 @@ function ItemRegistration() {
 
 				{/* 카테고리 */}
 				<Form.Item name="" label="카테고리">
-					<Select>
+					<Select onChange={changeMajorCategory}>
 						<Option value="">대분류</Option>
+            <Option value="1">가전/디지털</Option>
 					</Select>
 				</Form.Item>
 
