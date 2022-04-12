@@ -1,14 +1,11 @@
 import React,{ useState } from 'react';
 import {Divider, PageHeader, Input, Select, Button, Form } from "antd";
-
-
 /*
 function ItemRegistration() {
   const { Option } = Select;
   const currenttime = new Date();
   currenttime.setHours(currenttime.getHours() + 9);
   let currentTimeFormat = currenttime.toISOString().replace('T'," ").substring(0, 19);
-
   /!**
    * 상품 등록 페이지에서 받을 상품 정보
    *!/
@@ -22,8 +19,6 @@ function ItemRegistration() {
     productRegistrationDate: currentTimeFormat,
     productNumber: 0
   });
-
-
   /!**
    * input 값을 받는 functions
    * @param e input 값
@@ -33,13 +28,11 @@ function ItemRegistration() {
    *!/
   const onChangeFunction = async(e) => {
     const {value, name} = e.target;
-
     await setproduct({
       ...product,
       [name]: value
     })
   }
-
   /!**
    * 카테고리 소분류를 선택했을 때, function
    * @param e 선택한 소분류 카테고리
@@ -48,9 +41,7 @@ function ItemRegistration() {
    *!/
   const categotySelect = (e) => {
     const {value, name} = e.target;
-
   }
-
   /!**
    * 등록을 요청하는 functions
    * @author jslee
@@ -59,7 +50,6 @@ function ItemRegistration() {
   const onsubmitFunction = () => {
     console.log("등록", product);
   }
-
   return (
     <div>
       <PageHeader
@@ -146,7 +136,6 @@ function ItemRegistration() {
     </div>
   )
 }*/
-
 function ItemRegistration() {
   const { Option } = Select;
   const [form] = Form.useForm();
@@ -180,7 +169,6 @@ function ItemRegistration() {
       },
     },
   };
-
   /**
    * 상품 등록 버튼을 클릭시 동작할 functions
    *
@@ -191,7 +179,6 @@ function ItemRegistration() {
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
   }
-
   const categoryJson = [
     { name: "가전/디지털", category:'electronicsNDigital', index: 1, parentIndex: null},
     { name: "가전", category:'electronics', index: 101, parentIndex: 1},
@@ -207,9 +194,17 @@ function ItemRegistration() {
   ]
   const [middleCategory, setMiddleCategory] = useState([]);
 
-  const changeMajorCategory = (event) => {
+  const changeMajorCategory = async (event) => {
     console.log("event", event);
-    let valueCategory = categoryJson.filter(it => it.parentIndex == event);
+    let test = 0;
+    console.log(test);
+    let valueCategory = categoryJson.filter(it => {
+      it.parentIndex == event
+      test++;
+      console.log('filter '+ test);
+    });
+    console.log(test);
+
     console.log("valueCate",valueCategory);
     setMiddleCategory(valueCategory);
     console.log("filterValue", middleCategory);
@@ -223,7 +218,6 @@ function ItemRegistration() {
       </Select>
     </Form.Item>
   )
-
   return (
     <div style={{width: '100%'}}>
       <PageHeader
@@ -253,7 +247,6 @@ function ItemRegistration() {
         >
           <Input />
         </Form.Item>
-
         <Form.Item
           name="productNumber"
           label="전화번호"
@@ -271,7 +264,6 @@ function ItemRegistration() {
             }}
           />
         </Form.Item>
-
         <Form.Item
           name="productPrice"
           label="상품가격"
@@ -285,7 +277,6 @@ function ItemRegistration() {
         >
           <Input />
         </Form.Item>
-
         <Form.Item
           name="productCompany"
           label="판매업체"
@@ -316,6 +307,4 @@ function ItemRegistration() {
     </div>
   )
 }
-
-
 export default ItemRegistration;
