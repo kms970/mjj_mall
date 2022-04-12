@@ -206,20 +206,32 @@ function ItemRegistration() {
     { name: "모니터", category:'monitor', index: 10303, parentIndex: 103},
   ]
   const [middleCategory, setMiddleCategory] = useState([]);
+  const [smallCategory, setSmallCategory] = useState([]);
 
   useEffect(()=>{
-    console.log("eeee");
     console.log("eeeeeeeeeeee filterValue", middleCategory);
-  },[middleCategory]);
+  },[middleCategory, smallCategory]);
 
   const changeMajorCategory = async(event) => {
-    console.log("event", event);
-    let valueCategory = await categoryJson.filter(it => it.parentIndex == event);
-    console.log("valueCate",valueCategory);
-
-    setMiddleCategory(valueCategory);
-    console.log("filterValue", middleCategory);
+    if(event != null || event != ""){
+      console.log("event", event);
+      let valueCategory = await categoryJson.filter(it => it.parentIndex == event);
+      console.log("valueCate",valueCategory);
+  
+      setMiddleCategory(valueCategory);
+    } else { }
   }
+
+  const changeMidCategory = async(event) => {
+    if(event != null || event != ""){
+      console.log("event", event);
+      let valueCategory = await categoryJson.filter(it => it.parentIndex == event);
+      console.log("valueCate",valueCategory);
+  
+      setSmallCategory(valueCategory);
+    } else { }
+  }
+
 
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
@@ -306,16 +318,22 @@ function ItemRegistration() {
         </Form.Item>
 
 				{/* 카테고리 */}
-				<Form.Item name="" label="대분류">
+				<Form.Item name="majorType" label="대분류">
 					<Select onChange={changeMajorCategory}>
 						<Option value="">대분류</Option>
             <Option value="1">가전/디지털</Option>
 					</Select>
 				</Form.Item>
 
-        <Form.Item name="" label="중분류">
+        <Form.Item name="midType" label="중분류">
+          <Select onChange={changeMidCategory}>
+              {middleCategory.map(res=><Option value={res.index} key={res.name}>{res.name}</Option>)}
+          </Select>
+				</Form.Item>
+
+        <Form.Item name="smType" label="소분류">
           <Select>
-              {middleCategory.map(res=><Option value={res.index}>{res.name}</Option>)}
+              {smallCategory.map(res=><Option value={res.index} key={res.name}>{res.name}</Option>)}
           </Select>
 				</Form.Item>
       
@@ -329,6 +347,5 @@ function ItemRegistration() {
     </div>
   )
 }
-
 
 export default ItemRegistration;
