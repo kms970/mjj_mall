@@ -21,6 +21,6 @@
 
   TS 공부중
    - 참조 사이트 : https://www.samsungsds.com/kr/insights/TypeScript.html
-   
-  *************************************야근 이슈*****************************************
+
+   ORM, Mocha 공부
 */
