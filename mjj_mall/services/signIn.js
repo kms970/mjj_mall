@@ -5,9 +5,7 @@ const jwt = require('../customUtils/jwtModule/jwt');
 
 module.exports = {
     /**
-     * [codeName = collectionName]
-     * [user]
-     * [company]
+     * codeName = user, company
      * 
      * @param {Object} jsonObj 
      * @param {String} codeName 
