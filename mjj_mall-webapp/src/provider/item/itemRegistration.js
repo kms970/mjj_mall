@@ -71,7 +71,8 @@ function ItemRegistration() {
       console.log("valueCate",valueCategory);
   
       setMiddleCategory(valueCategory);
-    } else { }
+    } else { 
+    }
   }
 
   const changeMidCategory = async(event) => {
@@ -189,7 +190,6 @@ function ItemRegistration() {
           </Select>
 				</Form.Item>
       
-
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
             상품 등록
