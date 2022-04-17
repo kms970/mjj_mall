@@ -23,4 +23,6 @@
    - 참조 사이트 : https://www.samsungsds.com/kr/insights/TypeScript.html
 
    ORM, Mocha 공부
+
+   ====================금일까지만 좀 쉽니다===================
 */
