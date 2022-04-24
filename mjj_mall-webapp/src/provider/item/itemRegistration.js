@@ -189,7 +189,9 @@ function ItemRegistration() {
               {smallCategory.map(res=><Option value={res.index} key={res.name}>{res.name}</Option>)}
           </Select>
 				</Form.Item>
-      
+        
+        
+
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
             상품 등록
