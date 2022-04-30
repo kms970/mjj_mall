@@ -23,6 +23,7 @@
 8. 쿠버네티스 공부 필요
 
 9. jenkins 공부 필요
+- aws ec2 + docker + jenkins를 이용한 react 자동화 
 
 10. 현재 구성된 AWS EC2에 리액트 빌드 및 배포 환경 구축 
 - 선행과정: 도커 + nginx + jenkins필요
