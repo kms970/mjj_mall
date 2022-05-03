@@ -2,6 +2,8 @@ const mongodb = require("../customUtils/mongodbModule/mongoClientManager");
 
 module.exports = loginPage;
 
+function loginPage(){};
+
 /**
  * signUp user
  * 
@@ -10,7 +12,7 @@ module.exports = loginPage;
  * 
  * @returns 
  */
-loginPage.signUp = async (jsonObj,codeName) => {
+loginPage.prototype.signUp = async (jsonObj,codeName) => {
 
     let result = new Object();
     let collectionName = '';
@@ -70,7 +72,7 @@ loginPage.signUp = async (jsonObj,codeName) => {
  * 
  * @returns 
  */
-loginPage.signIn = async (jsonObj,codeName) => {
+loginPage.prototype.signIn = async (jsonObj,codeName) => {
 
     let result = new Object();
     let collectionName = '';
@@ -114,7 +116,7 @@ loginPage.signIn = async (jsonObj,codeName) => {
  * 
  * @returns 
  */
-loginPage.findId = async (jsonObj,codeName) => {
+loginPage.prototype.findId = async (jsonObj,codeName) => {
     
     let result = new Object();
     let collectionName = '';
