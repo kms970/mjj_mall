@@ -24,6 +24,14 @@ export function isEmptyobj(obj) {
   return false;
 }
 
+
+/**
+ * 정수형 랜덤 값을 생성하는 functions
+ * 
+ * @param {*} min 최소값
+ * @param {*} max 최대값
+ * @returns 랜덤 값
+ */
 export function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
