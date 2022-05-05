@@ -38,6 +38,13 @@ export function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
+/**
+ * 실수형 랜덤 값을 생성하는 functions
+ * 
+ * @param {*} min 최소값
+ * @param {*} max 최대값
+ * @returns 랜덤 값
+ */
 export function getRandomFloat(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
