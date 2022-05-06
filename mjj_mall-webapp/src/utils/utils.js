@@ -4,7 +4,7 @@
  * @param {*} arr 확인할 Array를 입력 받음
  * @returns boolean값으로 true 일경우 Array가 값이 있고, false일 경우 빈 배열
  */
- export function isEmptyArr(arr) {
+export function isEmptyArr(arr) {
   if(Array.isArray(arr) && arr.length === 0){
     return true;
   }
@@ -48,3 +48,5 @@ export function getRandomInt(min, max) {
 export function getRandomFloat(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
+
+
