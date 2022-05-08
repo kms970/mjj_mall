@@ -18,7 +18,7 @@
  9-5 prototype 생성자 구조 생각 해봅시다(정현)
      - 여기에 댓글 달아줘
      - 생성자가 필요 없는 구조면 단순 prototype도 괜찮을듯(민석)
-     - 댓글 있나요
+     - 댓글 있나요 없네요
   - 참조 사이트 : https://edykim.com/ko/post/summary-of-six-rules-for-designing-a-mongodb-schema/
 
 
