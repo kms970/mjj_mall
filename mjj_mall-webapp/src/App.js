@@ -11,6 +11,7 @@ import Header from "./common/header";
 import OrderConfirmation from "./orderConfirmation/orderConfirmation";
 import ItemRegistration from "./provider/item/itemRegistration";
 import TestFunction from './test/test';
+import Counter from './study_source/reducers/Counter';
 function App() {
   return (
     <div>
@@ -27,6 +28,7 @@ function App() {
           <Route path="/order/confirmation" element={<OrderConfirmation />} />
           <Route path="/provider/item/Registration" element={<ItemRegistration/>}/>
           <Route path="/test/test" element={<TestFunction/>} />
+          <Route path="/test/counter" element={<Counter/>} />
         </Routes>
       </BrowserRouter>
     </div>

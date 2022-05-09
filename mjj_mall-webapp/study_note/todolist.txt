@@ -1,15 +1,32 @@
 # Todo List
 
 1. 카테고리 구현 필요
+- 최적화 필요
+
 2. 로그인 후 jwt_token관리 필요 - jwt_refresh_token관리
+- 세션으로 관리는 구현 완료 
+
 3. React Redux 적용
+- action 및 모듈 생성완료
+- 다루는 연습 필요
+
 4. carousel - 슬라이드 배너
 - slick slider
+
 5. 이벤트 alert
 - sweetalert
 
+6. 앞으로 방향성에 대해서 논의 필요
 
+7. 도커(docker) 공부 필요
 
+8. 쿠버네티스 공부 필요
+
+9. jenkins 공부 필요
+- aws ec2 + docker + jenkins를 이용한 react 자동화 
+
+10. 현재 구성된 AWS EC2에 리액트 빌드 및 배포 환경 구축 
+- 선행과정: 도커 + nginx + jenkins필요
 
 
 
