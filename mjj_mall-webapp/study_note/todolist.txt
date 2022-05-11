@@ -29,7 +29,6 @@
 - 선행과정: 도커 + nginx + jenkins필요
 
 
-
 # 완료 항목
 1. 테스트 폴더에 테스트 API 요청 버튼 생성
   + access token을 이용한 API 요청 테스트용
